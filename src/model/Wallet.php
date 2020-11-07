@@ -15,9 +15,10 @@ class Wallet
     private $title;
 
     /**
-     * @var array
+     * @var string
      */
-    private $coins;
+
+    private $symbol;
 
     /**
      * @var \DateTime
@@ -48,22 +49,6 @@ class Wallet
     /**
      * @return string
      */
-    public function getCoins()
-    {
-        return $this->coins;
-    }
-
-    /**
-     * @param string $title
-     */
-    public function setCoins($coins)
-    {
-        $this->coins = $coins;
-    }
-
-    /**
-     * @return string
-     */
     public function getTitle()
     {
         return $this->title;
@@ -76,6 +61,23 @@ class Wallet
     {
         $this->title = $title;
     }
+
+        /**
+     * @return string
+     */
+    public function getSymbol()
+    {
+        return $this->symbol;
+    }
+
+    /**
+     * @param string $symbol
+     */
+    public function setSymbol($symbol)
+    {
+        $this->symbol = $symbol;
+    }
+
 
     /**
      * @return \DateTime

@@ -6,18 +6,20 @@ use App\config\Parameter;
 
 class FrontController extends Controller
 {
+    public function home()
+    {
+        //$this->refreshApiData();
+        $coins = $this->coinDAO->getCoins();
+        return $this->view->render('home', [
+            'coins' => $coins,
+        ]);
+    }
+
     public function refreshApiData()
     {
         $call = $this->CmcApiService->APICall();
         $this->coinDAO->addApiDataIntoDb($call);
         header('Location: ../public/index.php');
-    }
-    public function home()
-    {
-        $coins = $this->coinDAO->getCoins();
-        return $this->view->render('home', [
-            'coins' => $coins,
-        ]);
     }
 
     public function article($articleId)

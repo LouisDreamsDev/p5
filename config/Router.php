@@ -48,8 +48,8 @@ class Router
                 elseif($route === 'profile'){
                     $this->backController->profile();
                 }
-                elseif($route === 'mywallet'){
-                    $this->backController->my_wallet();
+                elseif($route === 'my_wallet'){
+                    $this->backController->my_wallets();
                 }
                 elseif($route === 'updatePassword'){
                     $this->backController->updatePassword($this->request->getPost());

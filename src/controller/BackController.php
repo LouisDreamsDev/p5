@@ -124,10 +124,13 @@ class BackController extends Controller
         }
     }
 
-    public function my_wallet()
+    public function my_wallets()
     {
         if($this->checkLoggedIn()) {
-            return $this->view->render('my_wallet');
+            $wallets = $this->walletDAO->getWallets();
+            return $this->view->render('my_wallet', [
+                'wallets' => $wallets,
+            ]);
         }
     }
 

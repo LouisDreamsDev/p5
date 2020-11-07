@@ -12,7 +12,7 @@
     <h1 class="py-4 text-center"><a href="../public/index.php">Wallet(x)</a></h1>
     <nav class="">
         <ul class="nav justify-content-around">
-            <li><a class="nav-link" href="../public/index.php?route=mywallet">Mon portefeuille</a></li>
+            <li><a class="nav-link" href="../public/index.php?route=my_wallet">Mon portefeuille</a></li>
             <li><a class="nav-link" href="../public/index.php?route=login">Se connecter</a></li>
             <li><a class="nav-link" href="../public/index.php?route=register">S'inscrire</a></li>
             <li><a class="nav-link" href="">A propos</a></li>

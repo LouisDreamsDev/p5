@@ -10,7 +10,7 @@ class CoinDAO extends DAO
     private function buildObject($row)
     {
         $coin = new Coin();
-        $coin->setId($row['id']);
+        $coin->setId($row['id']);   
         $coin->setCoin_name($row['coin_name']);
         $coin->setSymbol($row['symbol']);
         $coin->setSlug($row['slug']);
