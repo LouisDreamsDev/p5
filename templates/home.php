@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-subheader2 d-flex justify-content-between">
                         <em class="card-subtitle m-0"><?= $coin->getSymbol() ?></em>
-                        <span class="">&#8771<strong><?= $coin->getPrice() ?> &euro;</strong></span>
+                        <span class="">&#8771<strong><?= round($coin->getPrice(), 3) ?> &euro;</strong></span>
                     </div>
                 </div>
                 <div class="card-body">

@@ -39,16 +39,12 @@ class CoinDAO extends DAO
             $coins[$coinId] = $this->buildObject($row);
         }
         $result->closeCursor();
-        //!d($coins);
         return $coins;
     }
 
     public function addApiDataIntoDb($data)
     {
-        if ($this->checkDb())
-        {
-
-        }
+        $this->deleteAllCoins();
         foreach ($data as $coin)
         {
             $name = $coin->name;
@@ -103,12 +99,21 @@ class CoinDAO extends DAO
         }
     }
 
-    public function checkDb()
+    public function deleteAllCoins()
+    {
+        $sql = 'DELETE FROM coins';
+        $this->createQuery($sql);
+    }
+
+    public function checkDb($coin_symbol)
     {
         $sql = 'SELECT COUNT(symbol) FROM coins WHERE symbol = ?';
-        $result = $this->createQuery($sql);
+        $result = $this->createQuery($sql, [$coin_symbol]);
         $exist = $result->fetchColumn();
-        if ($exist) return;
+        if ($exist)
+        {
+            echo $exist;
+        }
     }
 
 }

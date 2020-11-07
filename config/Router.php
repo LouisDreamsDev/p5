@@ -67,7 +67,7 @@ class Router
                     $this->backController->administration();
                 }
                 elseif ($route === 'refreshApi'){
-                    $this->frontController->refreshApi();
+                    $this->frontController->refreshApiData();
                 }
                 
                 else{

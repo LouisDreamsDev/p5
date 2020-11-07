@@ -16,7 +16,7 @@
             <li><a class="nav-link" href="../public/index.php?route=login">Se connecter</a></li>
             <li><a class="nav-link" href="../public/index.php?route=register">S'inscrire</a></li>
             <li><a class="nav-link" href="">A propos</a></li>
-            <li><a href="../public/index.php?route=refreshApi">refresh</a></li>
+            <li><a class="nav-link" href="../public/index.php?route=refreshApi">refresh</a></li>
         </ul>
     </nav>
     <hr>

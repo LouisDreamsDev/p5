@@ -156,14 +156,7 @@ class Coin
      */
     public function setMax_supply($max_supply)
     {
-        !d($this->max_supply);
         $this->max_supply = $max_supply;
-        !d($this->max_supply);
-/*         if(is_null($this->max_supply))
-        {
-            $this->max_supply = $max_supply;
-        }
-        !d($this->max_supply); */
     }
 
     /**
@@ -179,7 +172,7 @@ class Coin
      */
     public function setCirculating_supply($circulating_supply)
     {
-        
+        $this->circulating_supply = $circulating_supply;
     }
 
     /**
@@ -243,13 +236,7 @@ class Coin
      */
     public function setPrice($price)
     {
-        !d($this->price);
         $this->price = $price;
-        if(is_null($this->price)) 
-        {
-            $this->$price = $price;
-        }
-        !d($this->price);
     }
 
     /**
