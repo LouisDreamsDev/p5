@@ -5,19 +5,27 @@
 
 <div id="global-wallet">
     <?php
-        foreach($wallets as $my_wallet)
+        foreach($wallet as $my_wallet)
         {
         ?>
             <div class="card">
-                <div class="card-header">
-                    <h4 class="my-0"><?= $my_wallet->getTitle() ?></h4>
+                <div class="card-header d-flex justify-content-between">
+                    <h4 class="my-0"><?= $my_wallet->getTitle(); ?></h4>
+                    <span>icon modify</span>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <li class="list-group-item">l1</li>
-                        <li class="list-group-item">n2</li>
-                        <li class="list-group-item">c3</li>
-                        <h5 class="card-footer">total : <?= 'a' ?></h5>
+                        <?php foreach ($wallet as $choices)
+                        {
+                            ?>
+                            <li class="list-group-item"><?= $choices->getSymbol(); ?></li>
+                            <?php    
+                        }
+                        ?>
+                        <div class="card-footer d-flex justify-content-between">
+                            <p id="wallet_total" class="card-text my-0">total :</p>
+                            <span><strong><?= '$sum' ?></strong></span>
+                        </div>
                     </ul>
                 </div>
             </div>

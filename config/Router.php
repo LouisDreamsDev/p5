@@ -49,7 +49,7 @@ class Router
                     $this->backController->profile();
                 }
                 elseif($route === 'my_wallet'){
-                    $this->backController->my_wallets();
+                    $this->backController->my_wallet();
                 }
                 elseif($route === 'updatePassword'){
                     $this->backController->updatePassword($this->request->getPost());

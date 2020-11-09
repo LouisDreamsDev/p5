@@ -17,21 +17,21 @@
                         <a href="">
                             <h4 class="card-title"><?= $coin->getCoin_name(); ?></h4>
                         </a>
-                        <span class="ml-auto text-muted"><?= $coin->getCmc_rank() ?></span>
+                        <span class="ml-auto text-muted"><?= $coin->getCmc_rank(); ?></span>
                     </div>
                     <div class="card-subheader2 d-flex justify-content-between">
-                        <em class="card-subtitle m-0"><?= $coin->getSymbol() ?></em>
-                        <span class="">&#8771<strong><?= round($coin->getPrice(), 3) ?> &euro;</strong></span>
+                        <em class="card-subtitle m-0"><?= $coin->getSymbol(); ?></em>
+                        <span class="">&#8771 <strong><?= round($coin->getPrice(), 3); ?> &euro;</strong></span>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
                         <ul>
-                            <li>max supply : <?= $coin->getMax_supply() ?></li>
-                            <li>last updated : <?= $coin->getLast_updated() ?></li>
+                            <li>max supply : <?= $coin->getMax_supply(); ?></li>
+                            <li>last updated : <?= $coin->getLast_updated(); ?></li>
                         </ul>
                     </div>
-                    <a class="card-link" href="">plus d'infos sur <?= $coin->getCoin_name() ?></a>
+                    <a class="card-link" href="">plus d'infos sur <?= $coin->getCoin_name(); ?></a>
                     <label for="checkbox">choisir</label>
                     <input type="checkbox">
                 </div>

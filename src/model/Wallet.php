@@ -23,12 +23,7 @@ class Wallet
     /**
      * @var \DateTime
      */
-    private $created_at;
-
-    /**
-     * @var string
-     */
-    private $role;
+    private $last_modified;
 
     /**
      * @return int
@@ -82,28 +77,17 @@ class Wallet
     /**
      * @return \DateTime
      */
-    public function getCreated_at()
+    public function getLast_Modified()
     {
-        return $this->created_at;
+        return $this->last_modified;
     }
 
     /**
-     * @param \DateTime $created_at
+     * @param \DateTime $last_modified
      */
-    public function setCreated_at($created_at)
+    public function setLast_Modified($last_modified)
     {
-        $this->createdAt = $created_at;
+        $this->createdAt = $last_modified;
     }
 
-    /**
-     * @param string $role
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-    public function setRole($role)
-    {
-        $this->role = $role;
-    }
 }

@@ -14,33 +14,32 @@ class WalletDAO extends DAO
         $wallet->setId($row['id']);
         $wallet->setTitle($row['title']);
         $wallet->setSymbol($row['symbol']);
-        $wallet->setCreated_at($row['created_at']);
+        $wallet->setLast_Modified($row['last_modified']);
         return $wallet;
     }
 
-    public function getWallets()
+    public function getWalletFromUser($user_id)
     {
-        $sql = 'SELECT wallet.id, wallet.title, coins.symbol, user.pseudo, wallet.created_at 
+        $sql = 'SELECT wallet.id, wallet.title, coins.symbol, wallet.value, wallet.last_modified
         FROM wallet 
         INNER JOIN coins
         ON wallet.symbol = coins.symbol
-        INNER JOIN user 
-        ON wallet.user_id = user.id
-        ';
-        $result = $this->createQuery($sql);
-        $wallets = [];
+        WHERE wallet.user_id = ?';
+        $result = $this->createQuery($sql, [$user_id]);
+        $wallet = [];
         foreach ($result as $row)
         {
-            $walletId = $row['id'];
-            $wallets[$walletId] = $this->buildObject($row);
+            $symbolId = $row['symbol'];
+            !d($symbolId);
+            $wallet[$symbolId] = $this->buildObject($row);
         }
         $result->closeCursor();
-        return $wallets;
+        return $wallet;
     }
 
-    public function deleteWallet($wallet_id)
+    public function deleteWallet($user_id)
     {
-
+        
     }
 
     public function deleteCoin()
