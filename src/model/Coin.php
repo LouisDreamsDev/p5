@@ -158,11 +158,11 @@ class Coin
     {
         if($max_supply == 0)
         {
-            $this->max_supply ='Non défini par le protocole';
+            $this->max_supply ='Non définie par le protocole';
         }
         else
         {
-            $this->max_supply = number_format($max_supply, 2, ',', ' ');
+            $this->max_supply = number_format($max_supply, 0, ',', ' ');
         }
     }
 
@@ -179,7 +179,7 @@ class Coin
      */
     public function setCirculating_supply($circulating_supply)
     {
-        $this->circulating_supply = number_format($circulating_supply, 2, ',', ' ');
+        $this->circulating_supply = number_format($circulating_supply, 0, ',', ' ');
     }
 
     /**
@@ -195,7 +195,7 @@ class Coin
      */
     public function setTotal_supply($total_supply)
     {
-        $this->total_supply = number_format($total_supply, 2, ',', ' ');
+        $this->total_supply = number_format($total_supply, 0, ',', ' ');
     }
 
     /**
@@ -350,6 +350,6 @@ class Coin
      */
     public function setMarket_cap($market_cap)
     {
-        $this->market_cap = number_format($market_cap, 2, ',', ' ');
+        $this->market_cap = number_format($market_cap, 0, ',', ' ');
     }
 }
