@@ -1,5 +1,5 @@
-#main-logo .border-primary {
-  border-color: #69a8ec;
+#main-logo {
+  margin: 0 0 7px 0;
 }
 #x-title {
   color: #69a8ec;
