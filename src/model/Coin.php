@@ -156,7 +156,14 @@ class Coin
      */
     public function setMax_supply($max_supply)
     {
-        $this->max_supply = $max_supply;
+        if($max_supply == 0)
+        {
+            $this->max_supply ='Non défini par le protocole';
+        }
+        else
+        {
+            $this->max_supply = number_format($max_supply, 2, ',', ' ');
+        }
     }
 
     /**
@@ -172,7 +179,7 @@ class Coin
      */
     public function setCirculating_supply($circulating_supply)
     {
-        $this->circulating_supply = $circulating_supply;
+        $this->circulating_supply = number_format($circulating_supply, 2, ',', ' ');
     }
 
     /**
@@ -188,7 +195,7 @@ class Coin
      */
     public function setTotal_supply($total_supply)
     {
-        $this->$total_supply = $total_supply;
+        $this->total_supply = number_format($total_supply, 2, ',', ' ');
     }
 
     /**
@@ -204,7 +211,7 @@ class Coin
      */
     public function setCmc_rank($cmc_rank)
     {
-        $this->$cmc_rank = $cmc_rank;
+        $this->cmc_rank = $cmc_rank;
     }
 
     /**
@@ -236,7 +243,13 @@ class Coin
      */
     public function setPrice($price)
     {
-        $this->price = $price;
+        if ($price > 50)
+        {
+            $this->price = round($price, 2);
+        }
+        else{
+            $this->price = round($price, 4);
+        }
     }
 
     /**
@@ -252,7 +265,7 @@ class Coin
      */
     public function setVolume_24h($volume_24h)
     {
-        $this->$volume_24h = $volume_24h;
+        $this->volume_24h = number_format($volume_24h, 2, ',', ' ');
     }
 
     /**
@@ -268,7 +281,14 @@ class Coin
      */
     public function setPercent_change_1h($percent_change_1h)
     {
-        $this->$percent_change_1h = $percent_change_1h;
+        if ($percent_change_1h > 0)
+        {
+            $this->percent_change_1h = '+'.round($percent_change_1h, 2);
+        }
+        else
+        {
+            $this->percent_change_1h = round($percent_change_1h, 2);
+        }
     }
 
     /**
@@ -284,7 +304,14 @@ class Coin
      */
     public function setPercent_change_24h($percent_change_24h)
     {
-        $this->$percent_change_24h = $percent_change_24h;
+        if ($percent_change_24h > 0)
+        {
+            $this->percent_change_24h = '+'.round($percent_change_24h, 2);
+        }
+        else
+        {
+            $this->percent_change_24h = round($percent_change_24h, 2);
+        }
     }
 
     /**
@@ -300,7 +327,14 @@ class Coin
      */
     public function setPercent_change_7d($percent_change_7d)
     {
-        $this->$percent_change_7d = $percent_change_7d;
+        if ($percent_change_7d)
+        {
+            $this->percent_change_7d = '+'.round($percent_change_7d, 2);
+        }
+        else
+        {
+            $this->percent_change_7d = round($percent_change_7d, 2);
+        }
     }
 
     /**
@@ -316,6 +350,6 @@ class Coin
      */
     public function setMarket_cap($market_cap)
     {
-        $this->$market_cap = $market_cap;
+        $this->market_cap = number_format($market_cap, 2, ',', ' ');
     }
 }

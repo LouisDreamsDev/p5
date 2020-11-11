@@ -1,20 +1,28 @@
-#x-title {
-  color: #3d8dc7;
+#main-logo .border-primary {
+  border-color: #69a8ec;
 }
+#x-title {
+  color: #69a8ec;
+}
+
 .nav {
   background-color: #e3f2fd;
 }
-#home-choises {
-  width: 10px;
+#home-cards {
+  width: 80%;
+  margin: auto;
 }
 .card {
-  width: 16rem;
+  width: 30rem;
   margin: 4px;
 }
-.break {
-  flex-basis: 100%;
-  height: 0;
+.card-text {
+  font-size: 0.9em;
 }
+.card-select {
+  width: 80%;
+  height: 10px;
+} 
 .form-group {
   margin: auto;
   width: 270px;

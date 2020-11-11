@@ -10,7 +10,7 @@
 <body>
 <header>
     <nav class="navbar py-0 pr-0 navbar-expand-sm navbar-light d-flex justify-content-between border-bottom">
-        <a class="navbar-brand pr-3 border-right border-primary" href="../public/index.php">
+        <a id="main-logo"class="navbar-brand pr-3 border-right border-primary" href="../public/index.php">
         <img src="../img/wallet_icon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
         <span class="h3">Wallet(<strong id="x-title">x</strong>)</span>
         </a>
