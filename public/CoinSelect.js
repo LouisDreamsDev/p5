@@ -1,6 +1,6 @@
 $(document).ready(function() {
  
-    HomeSelect.method1();
+    CoinSelect.method1();
 
     $( ".card" ).click(function() {
 
@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
 });
 
-class HomeSelect
+class CoinSelect
 {
     constructor()
     {
