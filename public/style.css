@@ -1,5 +1,8 @@
-hr {
-  width: 98%;
+#x-title {
+  color: #3d8dc7;
+}
+.nav {
+  background-color: #e3f2fd;
 }
 #home-choises {
   width: 10px;
@@ -15,6 +18,13 @@ hr {
 .form-group {
   margin: auto;
   width: 270px;
+}
+#contact .form-group {
+  margin: auto;
+  width: 400px;
+}
+#contact textarea {
+  width: 1000px;
 }
 #global-wallet .card {
   margin: auto;

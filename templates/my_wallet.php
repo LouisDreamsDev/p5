@@ -10,7 +10,7 @@
         ?>
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4 class="my-0"><?= $my_wallet->getTitle(); ?></h4>
+                    <h4 class="my-0 py-0 alert alert-primary"><?= $my_wallet->getTitle(); ?></h4>
                     <span>icon modify</span>
                 </div>
                 <div class="card-body">

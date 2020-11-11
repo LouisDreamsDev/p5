@@ -5,21 +5,25 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/style.css">
-    <title><?= $title ?></title>
+     <title><?= $title ?></title>
 </head>
 <body>
 <header>
-    <h1 class="py-4 text-center"><a href="../public/index.php">Wallet(x)</a></h1>
-    <nav class="">
-        <ul class="nav justify-content-around">
-            <li><a class="nav-link" href="../public/index.php?route=my_wallet">Mon portefeuille</a></li>
-            <li><a class="nav-link" href="../public/index.php?route=login">Se connecter</a></li>
-            <li><a class="nav-link" href="../public/index.php?route=register">S'inscrire</a></li>
-            <li><a class="nav-link" href="">A propos</a></li>
-            <li><a class="nav-link" href="../public/index.php?route=refreshApi">refresh</a></li>
-        </ul>
+    <nav class="navbar py-0 pr-0 navbar-expand-sm navbar-light d-flex justify-content-between border-bottom">
+        <a class="navbar-brand pr-3 border-right border-primary" href="../public/index.php">
+        <img src="../img/wallet_icon.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        <span class="h3">Wallet(<strong id="x-title">x</strong>)</span>
+        </a>
+        <div class="lx">
+            <ul class="nav d-flex justify-content-between">
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=my_wallet">Mon Portefeuille</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=refreshApi">Refresh</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=contact">Contact</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=login">Se connecter</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=register">S'inscrire</a></li>
+            </ul>
+        </div>
     </nav>
-    <hr>
 </header>
 <div id="content">
     <?= $content ?>

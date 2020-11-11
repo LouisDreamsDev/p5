@@ -17,9 +17,9 @@
                         <a href="">
                             <h4 class="card-title"><?= $coin->getCoin_name(); ?></h4>
                         </a>
-                        <span class="ml-auto text-muted"><?= $coin->getCmc_rank(); ?></span>
                     </div>
-                    <div class="card-subheader2 d-flex justify-content-between">
+                    <hr class="m-0">
+                    <div class="card-subheader2 d-flex justify-content-between mt-2">
                         <em class="card-subtitle m-0"><?= $coin->getSymbol(); ?></em>
                         <span class="">&#8771 <strong><?= round($coin->getPrice(), 3); ?> &euro;</strong></span>
                     </div>

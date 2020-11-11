@@ -48,6 +48,9 @@ class Router
                 elseif($route === 'profile'){
                     $this->backController->profile();
                 }
+                elseif($route === 'contact'){
+                    $this->backController->contact();
+                }
                 elseif($route === 'my_wallet'){
                     $this->backController->my_wallet();
                 }

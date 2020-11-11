@@ -191,4 +191,12 @@ class BackController extends Controller
         }
         header('Location: ../public/index.php');
     }
+
+    public function contact()
+    {
+        if($this->checkLoggedIn())
+        {
+            return $this->view->render('contact');   
+        }
+    }
 }
