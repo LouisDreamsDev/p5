@@ -13,17 +13,15 @@ class WalletDAO extends DAO
         $wallet = new Wallet();
         $wallet->setId($row['id']);
         $wallet->setTitle($row['title']);
-        $wallet->setSymbol($row['symbol']);
+        $wallet->setCoin_value($row['coin_value']);
         $wallet->setLast_Modified($row['last_modified']);
         return $wallet;
     }
 
     public function getWalletsFromUser($user_id)
     {
-        $sql = 'SELECT wallet.id, wallet.title, coins.symbol, wallet.value, wallet.last_modified
-        FROM wallet 
-        INNER JOIN coins
-        ON wallet.symbol = coins.symbol
+        $sql = 'SELECT wallet.id, wallet.title, wallet.coin_value, wallet.last_modified
+        FROM wallet
         WHERE wallet.user_id = ?';
         $result = $this->createQuery($sql, [$user_id]);
         $wallets = [];

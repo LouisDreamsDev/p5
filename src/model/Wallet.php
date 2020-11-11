@@ -18,7 +18,7 @@ class Wallet
      * @var string
      */
 
-    private $symbol;
+    private $coin_value;
 
     /**
      * @var \DateTime
@@ -60,17 +60,17 @@ class Wallet
         /**
      * @return string
      */
-    public function getSymbol()
+    public function getCoin_value()
     {
-        return $this->symbol;
+        return $this->coin_value;
     }
 
     /**
-     * @param string $symbol
+     * @param string $coin_value
      */
-    public function setSymbol($symbol)
+    public function setCoin_value($coin_value)
     {
-        $this->symbol = $symbol;
+        $this->symbol = $coin_value;
     }
 
 

@@ -128,9 +128,11 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn()) {
             $user_id = $this->session->get('id');
-            $wallet = $this->walletDAO->getWalletFromUser($user_id);
+            $wallet = $this->walletDAO->getWalletsFromUser($user_id);
+            $coins = $this->coinDAO->getCoins();
             return $this->view->render('my_wallet', [
                 'wallet' => $wallet,
+                'coins' => $coins,
             ]);
         }
     }
