@@ -36,9 +36,8 @@
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Offre max :</span> 
-                                <span class="text-nowrap"><?php 
-                                if ($coin->getMax_supply() !== 'Non défini par le protocole') {echo $coin->getMax_supply().' '.$coin->getSymbol();} else {echo $coin->getMax_supply().' '.$coin->getCoin_name();}
-                                ?>
+                                <span class="text-nowrap">
+                                <?php if ($coin->getMax_supply() !== 'Non définie par le protocole') {echo $coin->getMax_supply().' '.$coin->getSymbol();} else {echo $coin->getMax_supply().' '.$coin->getCoin_name();} ?>
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Volume / 24h :</span> 

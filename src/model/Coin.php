@@ -327,7 +327,7 @@ class Coin
      */
     public function setPercent_change_7d($percent_change_7d)
     {
-        if ($percent_change_7d)
+        if ($percent_change_7d > 0)
         {
             $this->percent_change_7d = '+'.round($percent_change_7d, 2);
         }

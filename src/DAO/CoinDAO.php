@@ -44,7 +44,6 @@ class CoinDAO extends DAO
 
     public function addApiDataIntoDb($data)
     {
-        $this->deleteAllCoins();
         foreach ($data as $coin)
         {
             $name = $coin->name;
@@ -62,57 +61,25 @@ class CoinDAO extends DAO
             $market_cap = $coin->quote->EUR->market_cap;
                         
             $sql = "INSERT INTO coins 
-            (
-                coin_name,
-                symbol, 
-                slug, 
-                max_supply, 
-                circulating_supply, 
-                total_supply, 
-                cmc_rank,
-                last_updated, 
-                price, 
-                volume_24h, 
-                percent_change_1h, 
-                percent_change_24h, 
-                percent_change_7d, 
-                market_cap
-            )
-            VALUES 
-            (
-                '$name', 
-                '$symbol', 
-                '$slug', 
-                {$max_supply}, 
-                {$circulating_supply}, 
-                {$total_supply}, 
-                {$cmc_rank}, 
-                NOW(), 
-                {$price}, 
-                {$volume_24h}, 
-                {$percent_change_1h}, 
-                {$percent_change_24h}, 
-                {$percent_change_7d}, 
-                {$market_cap}
-            )";
+            (coin_name, symbol, slug, max_supply, circulating_supply, total_supply, cmc_rank,last_updated, price, volume_24h, percent_change_1h, percent_change_24h, percent_change_7d, market_cap)
+            VALUES ('$name', '$symbol', '$slug', {$max_supply},{$circulating_supply}, {$total_supply}, {$cmc_rank}, NOW(), {$price}, {$volume_24h}, {$percent_change_1h}, {$percent_change_24h}, {$percent_change_7d}, {$market_cap})
+            ON DUPLICATE KEY UPDATE
+            coin_name = '$name',
+            symbol = '$symbol',
+            slug = '$slug',
+            max_supply = {$max_supply},
+            circulating_supply = {$circulating_supply},
+            total_supply = {$total_supply},
+            cmc_rank = {$cmc_rank},
+            last_updated = NOW(),
+            price = {$price},
+            volume_24h = {$volume_24h},
+            percent_change_1h = {$percent_change_1h},
+            percent_change_24h = {$percent_change_24h},
+            percent_change_7d = {$percent_change_7d},
+            market_cap = {$market_cap}
+            ";
             $this->createQuery($sql);
-        }
-    }
-
-    public function deleteAllCoins()
-    {
-        $sql = 'DELETE FROM coins';
-        $this->createQuery($sql);
-    }
-
-    public function checkDb($coin_symbol)
-    {
-        $sql = 'SELECT COUNT(symbol) FROM coins WHERE symbol = ?';
-        $result = $this->createQuery($sql, [$coin_symbol]);
-        $exist = $result->fetchColumn();
-        if ($exist)
-        {
-            echo $exist;
         }
     }
 
