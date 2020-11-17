@@ -8,7 +8,6 @@ class FrontController extends Controller
 {
     public function home()
     {
-        //$this->refreshApiData();
         $coins = $this->coinDAO->getCoins();
         return $this->view->render('home', [
             'coins' => $coins,
@@ -22,14 +21,6 @@ class FrontController extends Controller
         header('Location: ../public/index.php');
     }
 
-    public function article($articleId)
-    {
-        $article = $this->articleDAO->getArticle($articleId);
-        return $this->view->render('single', [
-            'article' => $article,
-        ]);
-    }
-
     public function register(Parameter $post)
     {
         if($post->get('submit')) {
@@ -39,7 +30,7 @@ class FrontController extends Controller
                 }
                     if(!$errors) {
                     $this->userDAO->register($post);
-                    $this->session->set('register', 'Votre inscription a bien été effectuée !');
+                    $this->session->set('register', 'Votre inscription a bien été effectuée. Bienvenue sur Wallet(x) !');
                     header('Location: ../public/index.php');
                 }
                 return $this->view->render('register', [
@@ -62,7 +53,7 @@ class FrontController extends Controller
                 header('Location: ../public/index.php');
             }
             else {
-                $this->session->set('error_login', 'Le pseudo ou le mot de passe sont incorrects');
+                $this->session->set('error_login', 'Le pseudo ou le mot de passe est incorrect. Veuillez Réessayer.');
                 return $this->view->render('login', [
                     'post'=> $post
                 ]);

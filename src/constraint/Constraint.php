@@ -35,4 +35,12 @@ class Constraint
         }
     }
 
+    public function special_char($name, $value)
+    {
+        if (preg_match('/[#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $value)) 
+        {
+            return '<p>Votre '.$name.' contient des charactères non autorisés. <br> '.$value.' n\'est pas valide.</p>';
+        }
+    }
+
 }

@@ -15,12 +15,6 @@ class Wallet
     private $title;
 
     /**
-     * @var string
-     */
-
-    private $coin_value;
-
-    /**
      * @var \DateTime
      */
     private $last_modified;
@@ -57,23 +51,6 @@ class Wallet
         $this->title = $title;
     }
 
-        /**
-     * @return string
-     */
-    public function getCoin_value()
-    {
-        return $this->coin_value;
-    }
-
-    /**
-     * @param string $coin_value
-     */
-    public function setCoin_value($coin_value)
-    {
-        $this->symbol = $coin_value;
-    }
-
-
     /**
      * @return \DateTime
      */
@@ -87,7 +64,7 @@ class Wallet
      */
     public function setLast_Modified($last_modified)
     {
-        $this->createdAt = $last_modified;
+        $this->last_modified = $last_modified;
     }
 
 }

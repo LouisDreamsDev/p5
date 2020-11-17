@@ -27,19 +27,7 @@ class Router
         try{
             if(isset($route))
             {
-                if($route === 'article'){
-                    $this->frontController->article($this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'addArticle'){
-                    $this->backController->addArticle($this->request->getPost());
-                }
-                elseif($route === 'editArticle'){
-                    $this->backController->editArticle($this->request->getPost(), $this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'deleteArticle'){
-                    $this->backController->deleteArticle($this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'register'){
+                if($route === 'register'){
                     $this->frontController->register($this->request->getPost());
                 }
                 elseif($route === 'login'){
@@ -52,7 +40,13 @@ class Router
                     $this->backController->contact();
                 }
                 elseif($route === 'my_wallet'){
-                    $this->backController->my_wallet();
+                    $this->backController->my_wallets();
+                }
+                elseif($route === 'delete_wallet'){
+                    $this->backController->delete_wallet($this->request->getGet()->get('wallet_id'));
+                }
+                elseif($route === 'edit_wallet'){
+                    $this->backController->edit_wallet($this->request->getPost(), $this->request->getGet()->get('wallet_id'));
                 }
                 elseif($route === 'updatePassword'){
                     $this->backController->updatePassword($this->request->getPost());
@@ -84,7 +78,7 @@ class Router
         catch (Exception $e)
         {
             $this->errorController->errorServer($e);
-            echo $e->getMessage();
+            echo $e->getMessage().' '.$e->getLine().' '.$e->getTraceAsString();
         }
     }
 }

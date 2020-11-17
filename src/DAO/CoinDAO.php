@@ -42,6 +42,17 @@ class CoinDAO extends DAO
         return $coins;
     }
 
+    public function getCoinFromId($coin_id)
+    {
+        $sql = 'SELECT id, coin_name, symbol, slug, max_supply, circulating_supply, total_supply, cmc_rank, last_updated, price, volume_24h, percent_change_1h, percent_change_24h, percent_change_7d, market_cap
+        FROM coins
+        WHERE coins.id = ?';
+        $result = $this->createQuery($sql, [$coin_id]);
+        $coin = $result->fetch();
+        $result->closeCursor();
+        return $this->buildObject($coin);
+    }
+
     public function addApiDataIntoDb($data)
     {
         foreach ($data as $coin)

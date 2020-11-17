@@ -3,6 +3,7 @@
 namespace App\src\controller;
 
 use App\config\Parameter;
+use App\src\model\Wallet;
 
 class BackController extends Controller
 {
@@ -46,28 +47,10 @@ class BackController extends Controller
         }
     }
 
-    public function addArticle(Parameter $post)
-    {
-        if($this->checkAdmin()) {
-            if ($post->get('submit')) {
-                $errors = $this->validation->validate($post, 'Article');
-                if (!$errors) {
-                    $this->articleDAO->addArticle($post, $this->session->get('id'));
-                    $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
-                    header('Location: ../public/index.php?route=administration');
-                }
-                return $this->view->render('add_article', [
-                    'post' => $post,
-                    'errors' => $errors
-                ]);
-            }
-            return $this->view->render('add_article');
-        }
-    }
-
     public function editArticle(Parameter $post, $articleId)
     {
-        if($this->checkAdmin()) {
+        if($this->checkAdmin())
+        {
             $article = $this->articleDAO->getArticle($articleId);
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Article');
@@ -80,7 +63,6 @@ class BackController extends Controller
                     'post' => $post,
                     'errors' => $errors
                 ]);
-
             }
             $post->set('id', $article->getId());
             $post->set('title', $article->getTitle());
@@ -93,47 +75,50 @@ class BackController extends Controller
         }
     }
 
-    public function deleteArticle($articleId)
-    {
-        if($this->checkAdmin()) {
-            $this->articleDAO->deleteArticle($articleId);
-            $this->session->set('delete_article', 'L\' article a bien été supprimé !');
-            header('Location: ../public/index.php?route=administration');
-        }
-    }
-
-    public function addComment(Parameter $post, $articleId)
-    {
-        if($post->get('submit')) {
-            if($this->checkLoggedIn()) {
-                $errors = $this->validation->validate($post, 'Comment');
-                if(!$errors) {
-                    $this->commentDAO->addComment($post, $articleId);
-                    $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
-                    header('Location: ../public/index.php?route=article&articleId='.$articleId);
-                }
-                $article = $this->articleDAO->getArticle($articleId);
-                $comments = $this->commentDAO->getCommentsFromArticle($articleId);
-                return $this->view->render('single', [
-                    'article' => $article,
-                    'comments' => $comments,
-                    'post' => $post,
-                    'errors' => $errors
-                ]);
-            }
-        }
-    }
-
-    public function my_wallet()
+    public function my_wallets()
     {
         if($this->checkLoggedIn()) {
             $user_id = $this->session->get('id');
-            $wallet = $this->walletDAO->getWalletsFromUser($user_id);
-            $coins = $this->coinDAO->getCoins();
+            $wallets = $this->walletDAO->getWalletsFromUser($user_id);
+            $wallet_has_coins = $this->walletHasCoinsDAO->getCoinsFromWallet(1);
             return $this->view->render('my_wallet', [
-                'wallet' => $wallet,
-                'coins' => $coins,
+                'wallets' => $wallets,
+                'wallet_has_coins' => $wallet_has_coins,
             ]);
+        }
+    }
+
+    public function edit_wallet(Parameter $post, $wallet_id)
+    {
+        $wallet = $this->walletDAO->get_wallet($wallet_id);
+        if($post->get('submit')) 
+        {
+            $errors = $this->validation->validate($post, 'Wallet');
+            if (!$errors)
+            {
+                $this->WalletDAO->edit_wallet($post, $wallet_id, $this->session->get('id'));
+                $this->session->set('edit_wallet', 'Le portefeuille a bien été modifié.');
+                header('Location: ../public/index.php?route=my_wallet');
+            }
+            return $this->view->render('edit_article', [
+                'post' => $post,
+                'errors' => $errors
+            ]);
+        }
+        $post->set('id', $wallet->getId());
+        $post->set('title', $wallet->getTitle());
+        /* coins ? */
+        return $this->view->render('edit_article', [
+            'post' => $post
+        ]);
+    }
+
+    public function delete_wallet($wallet_id) 
+    {
+        if($this->checkLoggedIn()) {
+            $this->walletDAO->delete_wallet($wallet_id);
+            $this->session->set('delete_wallet', 'Le portefeuille a bien été supprimé.');
+            header('Location: ../public/index.php?route=my_wallet');
         }
     }
 
@@ -149,7 +134,7 @@ class BackController extends Controller
         if($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
-                $this->session->set('update_password', 'Le mot de passe a été mis à jour');
+                $this->session->set('update_password', 'Le mot de passe a bien été mis à jour.');
                 header('Location: ../public/index.php?route=profile');
             }
             return $this->view->render('update_password');
@@ -189,7 +174,7 @@ class BackController extends Controller
         if($param === 'logout') {
             $this->session->set($param, 'À bientôt');
         } else {
-            $this->session->set($param, 'Votre compte a bien été supprimé');
+            $this->session->set($param, 'Votre compte a bien été supprimé.');
         }
         header('Location: ../public/index.php');
     }

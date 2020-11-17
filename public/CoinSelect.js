@@ -1,3 +1,5 @@
+// jquery selector test
+
 $(document).ready(function() {
  
     CoinSelect.method1();
