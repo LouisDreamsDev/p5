@@ -8,10 +8,6 @@
     <label for="exampleFormControlInput1">Email address</label>
     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
     <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre email.</small>
-    </div>
-    </div>
-    <div class="form-group">
     <label for="exampleFormControlTextarea1">Votre message</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Entrer votre message ici.."></textarea>
-    </div>
 </form>

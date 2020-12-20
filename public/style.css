@@ -22,17 +22,21 @@
 .card-select {
   width: 80%;
   height: 10px;
-} 
+}
+label {
+  margin: 16px 0 16px 0;
+}
 .form-group {
   margin: auto;
   width: 270px;
 }
+#edit_wallet .form-group {
+  margin: auto;
+  width: 870px;
+}
 #contact .form-group {
   margin: auto;
   width: 400px;
-}
-#contact textarea {
-  width: 1000px;
 }
 #global-wallet .card {
   margin: auto;

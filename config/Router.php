@@ -48,6 +48,9 @@ class Router
                 elseif($route === 'edit_wallet'){
                     $this->backController->edit_wallet($this->request->getPost(), $this->request->getGet()->get('wallet_id'));
                 }
+                elseif($route === 'delete_coin_from_wallet'){
+                    $this->backController->delete_coin_from_wallet($this->request->getGet()->get('wallet_id'), $this->request->getGet()->get('w_coin_id'));
+                }
                 elseif($route === 'updatePassword'){
                     $this->backController->updatePassword($this->request->getPost());
                 }
@@ -66,7 +69,6 @@ class Router
                 elseif ($route === 'refreshApi'){
                     $this->frontController->refreshApiData();
                 }
-                
                 else{
                     $this->errorController->errorNotFound();
                 }

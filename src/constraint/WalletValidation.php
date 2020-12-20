@@ -42,16 +42,16 @@ class WalletValidation extends Validation
     private function check_title($name, $value)
     {
         if($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('title', $value);
+            return $this->constraint->notBlank('titre', $value);
         }
         if ($this->constraint->special_char($name, $value)) {
-            return $this->constraint->special_char('title', $value);
+            return $this->constraint->special_char('titre', $value);
         }
         if($this->constraint->minLength($name, $value, 3)) {
-            return $this->constraint->minLength('title', $value, 3);
+            return $this->constraint->minLength('titre', $value, 3);
         }
         if($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('title', $value, 255);
+            return $this->constraint->maxLength('titre', $value, 255);
         }
     }
 }

@@ -19,7 +19,8 @@
         </a>
         <div class="lx">
             <ul class="nav d-flex justify-content-between">
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=my_wallet">Mon Portefeuille</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php">Accueil</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=my_wallet">Mes Portefeuilles</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=refreshApi">Refresh</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=contact">Contact</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=login">Se connecter</a></li>

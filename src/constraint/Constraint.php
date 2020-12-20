@@ -2,8 +2,6 @@
 
 namespace App\src\constraint;
 
-use App\config\Parameter;
-
 class Constraint
 {
     public function notBlank($name, $value)
@@ -37,7 +35,7 @@ class Constraint
 
     public function special_char($name, $value)
     {
-        if (preg_match('/[#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $value)) 
+        if (preg_match('/[#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $value) == 1) 
         {
             return '<p>Votre '.$name.' contient des charactères non autorisés. <br> '.$value.' n\'est pas valide.</p>';
         }

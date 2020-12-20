@@ -13,7 +13,7 @@ class Validation
         }
         elseif ($name === 'Wallet')
         {
-            $walletValidation = new UserValidation();
+            $walletValidation = new WalletValidation();
             $errors = $walletValidation->check($data);
             return $errors;   
         }

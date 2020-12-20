@@ -14,13 +14,13 @@ class WalletDAO extends DAO
         $wallet = new Wallet();
         $wallet->setId($row['id']);
         $wallet->setTitle($row['title']);
-        $wallet->setLast_Modified($row['last_modified']);
+        $wallet->setLast_Modified($row['last_edit']);
         return $wallet;
     }
 
     public function getWalletsFromUser($user_id)
     {
-        $sql = 'SELECT wallet.id, wallet.title, wallet.last_modified
+        $sql = 'SELECT wallet.id, wallet.title, wallet.last_edit
         FROM wallet
         WHERE wallet.user_id = ?';
         $result = $this->createQuery($sql, [$user_id]);
@@ -36,7 +36,7 @@ class WalletDAO extends DAO
 
     public function get_wallet($wallet_id)
     {
-        $sql = 'SELECT wallet.id, wallet.title, wallet.last_modified, wallet.user_id
+        $sql = 'SELECT wallet.id, wallet.title, wallet.last_edit, wallet.user_id
         FROM wallet
         INNER JOIN user ON wallet.user_id = user.id
         WHERE wallet.id = ?';
@@ -46,9 +46,19 @@ class WalletDAO extends DAO
         return $this->buildObject($wallet);
     }
 
-    public function edit_wallet(Parameter $post, $articleId, $userId)
+    public function add_wallet()
     {
+        
+    }
 
+    public function edit_wallet(Parameter $post, $wallet_id, $user_id)
+    {
+        $sql = 'UPDATE wallet SET title=:title, last_edit=NOW(), user_id=:user_id WHERE id=:wallet_id';
+        $this->createQuery($sql, [
+            'title' => $post->get('title'),
+            'user_id' => $user_id,
+            'wallet_id' => $wallet_id
+        ]);
     }
 
     public function delete_wallet($wallet_id)

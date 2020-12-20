@@ -10,19 +10,20 @@ class WalletHasCoinsDAO extends DAO
     private function buildObject($row)
     {
         $walletHasCoins = new WalletHasCoins();
-        $walletHasCoins->setWallet_id($row['wallet_id']);
-        $walletHasCoins->setCoin_id($row['coin_id']);
-        $walletHasCoins->setCoin_price($row['coin_price']);
-        $walletHasCoins->setCoin_value($row['coin_value']);
+        $walletHasCoins->set_wallet_id($row['wallet_id']);
+        $walletHasCoins->set_coin_id($row['coin_id']);
+        $walletHasCoins->set_coin_symbol($row['symbol']);
+        $walletHasCoins->set_coin_price($row['price']);
+        $walletHasCoins->set_coin_quantity($row['coin_quantity']);
         return $walletHasCoins;
     }
 
     public function getCoinsFromWallet($wallet_id)
     {
-        $sql = 'SELECT wallet_id, coin_id, coin_price, coin_value
+        $sql = 'SELECT wallet_has_coins.wallet_id, wallet_has_coins.coin_id, coins.symbol, coins.price, wallet_has_coins.coin_quantity
         FROM wallet_has_coins
         INNER JOIN wallet ON wallet_has_coins.wallet_id = wallet.id
-        INNER JOIN coins ON wallet_has_coins.coin_id = coins.id AND wallet_has_coins.coin_price = coins.price
+        INNER JOIN coins ON wallet_has_coins.coin_id = coins.id
         WHERE wallet_has_coins.wallet_id = ?';
         $result = $this->createQuery($sql, [$wallet_id]);
         $coins = [];
@@ -35,9 +36,19 @@ class WalletHasCoinsDAO extends DAO
         return $coins;
     }
 
-    public function DeleteCoinFromWallet($wallet_id, $coin_id)
+    public function edit_coin_quantity($wallet_id, $w_coin_id, $coin_quantity)
     {
-        $sql = 'DELETE FROM wallet_has_coins WHERE wallet_id = ?, coin_id = ?';
-        $this->createQuery($sql, [$wallet_id, $coin_id]);
+        $sql = 'UPDATE wallet_has_coins SET wallet_id=:wallet_id, coin_id=:coin_id, coin_quantity=:coin_quantity';
+        $this->createQuery($sql, [
+            'wallet_id' => $wallet_id,
+            'coin_id' => $w_coin_id,
+            'coin_quantity' => $coin_quantity
+        ]);
+    }
+
+    public function delete_coin_from_wallet($wallet_id, $w_coin_id)
+    {
+        $sql = 'DELETE FROM wallet_has_coins WHERE wallet_has_coins.wallet_id = ? AND wallet_has_coins.coin_id = ?';
+        $this->createQuery($sql, [$wallet_id, $w_coin_id]);
     }
 }
