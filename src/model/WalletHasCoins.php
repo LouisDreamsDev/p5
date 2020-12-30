@@ -8,29 +8,29 @@ class WalletHasCoins
      * @var int
      */
 
-    private $wallet_id;
+    private $walletId;
 
     /**
      * @var int
      */
 
-    private $coin_id;
+    private $coinId;
 
     /**
      * @var string
      */
 
-    private $coin_symbol;
+    private $coinSymbol;
 
     /**
      * @var int
      */
-    private $coin_price;
+    private $coinPrice;
 
     /**
      * @var int
      */
-    private $coin_quantity;
+    private $coinQuantity;
 
     /**
      * attribut de relation avec Coin
@@ -38,96 +38,105 @@ class WalletHasCoins
      */
     private $coins = [];
 
-    public function get_wallet_id()
+    public function getWalletId()
     {
-        return $this->wallet_id;
+        return $this->walletId;
     }
 
     /**
-     * @param int $wallet_id
+     * @param int $walletId
      */
 
-    public function set_wallet_id($wallet_id)
+    public function setWalletId($walletId)
     {
-        $this->wallet_id = $wallet_id;
+        $this->walletId = $walletId;
     }
 
     /**
      * @return int
      */
 
-    public function get_coin_id()
+    public function getCoinId()
     {
-        return $this->coin_id;
+        return $this->coinId;
     }
 
     /**
-     * @param int $coin_id
+     * @param int $coinId
      */
     
-    public function set_coin_id($coin_id)
+    public function setCoinId($coinId)
     {
-        $this->coin_id = $coin_id;
+        $this->coinId = $coinId;
     }
 
     /**
-     * @return string $coin_symbol
+     * @return string $coinSymbol
      */
-    public function get_coin_symbol()
+    public function getCoinSymbol()
     {
-        return $this->coin_symbol;
+        return $this->coinSymbol;
     }
 
     /**
-     * @param string $coin_symbol
+     * @param string $coinSymbol
      */
 
-    public function set_coin_symbol($coin_symbol)
+    public function setCoinSymbol($coinSymbol)
     {
-        $this->coin_symbol = $coin_symbol;
+        $this->coinSymbol = $coinSymbol;
     }
     
     /**
      * @return int
      */
-    public function get_coin_price()
+    public function getCoinPrice()
     {
-        return $this->coin_price;
+        return $this->coinPrice;
     }
 
     /**
-     * @param string $coin_price
+     * @param string $coinPrice
      */
-    public function set_coin_price($coin_price)
+    public function setCoinPrice($coinPrice)
     {
-        if ($coin_price > 50)
+        if ($coinPrice > 50)
         {
-            $this->coin_price = round($coin_price, 2);
+            $this->coinPrice = round($coinPrice, 2);
         }
         else{
-            $this->coin_price = round($coin_price, 4);
+            $this->coinPrice = round($coinPrice, 4);
         }
     }
     /**
      * @return int
      */
 
-    public function get_coin_quantity()
+    public function getCoinQuantity()
     {
-        return $this->coin_quantity;
+        return $this->coinQuantity;
     }
 
     /**
-     * @param int $coin_quantity
+     * @param int $coinQuantity
      */
     
-    public function set_coin_quantity($coin_quantity)
+    public function setCoinQuantity($coinQuantity)
     {
-        $this->coin_quantity = $coin_quantity;
+        $this->coinQuantity = $coinQuantity;
     }
     
     /* getters setters */
     /* function pour ajouter une entrée  */
+    public function getCoin()
+    {
+        return $this->coins;
+    }
+
+    public function setCoins($coins = [])
+    {
+        $this->coins = $coins;
+    }
 
     public function addCoins(Coin $coin)
     {

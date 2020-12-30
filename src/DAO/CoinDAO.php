@@ -7,7 +7,7 @@ use App\src\model\Coin;
 class CoinDAO extends DAO 
 {
 
-    private function buildObject($row)
+    public function buildObject($row)
     {
         $coin = new Coin();
         $coin->setId($row['id']);   

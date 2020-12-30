@@ -10,11 +10,11 @@ class WalletHasCoinsDAO extends DAO
     private function buildObject($row)
     {
         $walletHasCoins = new WalletHasCoins();
-        $walletHasCoins->set_wallet_id($row['wallet_id']);
-        $walletHasCoins->set_coin_id($row['coin_id']);
-        $walletHasCoins->set_coin_symbol($row['symbol']);
-        $walletHasCoins->set_coin_price($row['price']);
-        $walletHasCoins->set_coin_quantity($row['coin_quantity']);
+        $walletHasCoins->setWalletId($row['wallet_id']);
+        $walletHasCoins->setCoinId($row['coin_id']);
+        $walletHasCoins->setCoinSymbol($row['symbol']);
+        $walletHasCoins->setCoinPrice($row['price']);
+        $walletHasCoins->setCoinQuantity($row['coin_quantity']);
         return $walletHasCoins;
     }
 
@@ -31,6 +31,7 @@ class WalletHasCoinsDAO extends DAO
         {
             $coin_id = $row['coin_id'];
             $coins[$coin_id] = $this->buildObject($row);
+            /* creation objet wallet has coins  */
         }
         $result->closeCursor();
         return $coins;

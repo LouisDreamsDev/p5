@@ -17,7 +17,7 @@ class Wallet
     /**
      * @var \DateTime
      */
-    private $last_modified;
+    private $lastModified;
 
     /**
      * attribut de relation avec Coin
@@ -60,17 +60,50 @@ class Wallet
     /**
      * @return \DateTime
      */
-    public function getLast_Modified()
+    public function getLastModified()
     {
-        return $this->last_modified;
+        return $this->lastModified;
     }
 
     /**
-     * @param \DateTime $last_modified
+     * @param \DateTime $lastModified
      */
-    public function setLast_Modified($last_modified)
+    public function setLastModified($lastModified)
     {
-        $this->last_modified = $last_modified;
+        $this->lastModified = $lastModified;
+    }
+
+    
+    /**
+     * getWalletHasCoins
+     *
+     * @return void
+     */
+    public function getWalletHasCoins()
+    {
+        return $this->walletHasCoins;    
+    }
+    
+    /**
+     * setWalletHasCoins
+     * 
+     * @param  mixed $walletHasCoins
+     * @return void
+     */
+    public function setWalletHasCoins($walletHasCoins)
+    {
+        $this->walletHasCoins = $walletHasCoins;
+    } 
+    
+    /**
+     * addWalletHasCoins
+     *
+     * @param  mixed $walletHasCoins
+     * @return void
+     */
+    public function addWalletHasCoins($walletHasCoins)
+    {
+        $this->walletHasCoins[] = $walletHasCoins;
     }
 
 }
