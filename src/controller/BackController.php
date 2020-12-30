@@ -58,6 +58,7 @@ class BackController extends Controller
                 $wallet_id = $wallet->getId();
                 array_push($wallet_content, $this->walletHasCoinsDAO->getCoinsFromWallet($wallet_id));
             }
+            !d($wallet_content);
             return $this->view->render('my_wallet', [
                 'wallets' => $wallets,
                 'wallet_content' => $wallet_content,

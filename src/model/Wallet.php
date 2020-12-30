@@ -20,6 +20,12 @@ class Wallet
     private $last_modified;
 
     /**
+     * attribut de relation avec Coin
+     * @return array<WalletHasCoins>
+     */
+    private $walletHasCoins = [];
+
+    /**
      * @return int
      */
     public function getId()

@@ -25,19 +25,19 @@ class WalletHasCoins
     /**
      * @var int
      */
-
     private $coin_price;
 
     /**
      * @var int
      */
-
     private $coin_quantity;
 
     /**
-     * @return int
+     * attribut de relation avec Coin
+     * @return array<Coin>
      */
-    
+    private $coins = [];
+
     public function get_wallet_id()
     {
         return $this->wallet_id;
@@ -124,5 +124,13 @@ class WalletHasCoins
     public function set_coin_quantity($coin_quantity)
     {
         $this->coin_quantity = $coin_quantity;
-    }  
+    }
+    
+    /* getters setters */
+    /* function pour ajouter une entrée  */
+
+    public function addCoins(Coin $coin)
+    {
+        $this->coins[] = $coin;
+    }
 }
