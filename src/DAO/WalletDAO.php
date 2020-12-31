@@ -18,7 +18,7 @@ class WalletDAO extends DAO
         $wallet = new Wallet();
         $wallet->setId($row['id']);
         $wallet->setTitle($row['title']);
-        $wallet->setLast_Modified($row['last_edit']);
+        $wallet->setLastModified($row['last_edit']);
         return $wallet;
     }
 
