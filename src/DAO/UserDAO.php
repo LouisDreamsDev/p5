@@ -19,7 +19,7 @@ class UserDAO extends DAO
 
     public function getUsers()
     {
-        $sql = 'SELECT user.id, user.pseudo, user.created_at, role.name FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
+        $sql = 'SELECT user.id, user.pseudo, user.CreatedAt, role.name FROM user INNER JOIN role ON user.roleId = role.id ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row){
@@ -33,7 +33,7 @@ class UserDAO extends DAO
     public function register(Parameter $post)
     {
         $this->checkUser($post);
-        $sql = 'INSERT INTO user (pseudo, password, created_at, role_id) VALUES (?, ?, NOW(), ?)';
+        $sql = 'INSERT INTO user (pseudo, mail, password, createdAt, roleId) VALUES (?, ?, ?, NOW(), ?)';
         $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_BCRYPT), 1]);
     }
 
@@ -49,7 +49,7 @@ class UserDAO extends DAO
 
     public function login(Parameter $post)
     {
-        $sql = 'SELECT user.id, user.role_id, user.password, role.name FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
+        $sql = 'SELECT user.id, user.roleId, user.password, role.name FROM user INNER JOIN role ON role.id = user.roleId WHERE pseudo = ?';
         $data = $this->createQuery($sql, [$post->get('pseudo')]);
         $result = $data->fetch();
         $isPasswordValid = password_verify($post->get('password'), $result['password']);

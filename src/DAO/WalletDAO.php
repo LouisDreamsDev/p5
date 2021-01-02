@@ -25,23 +25,29 @@ class WalletDAO extends DAO
     public function getWalletsFromUser($userId)
     {
         /* faire les jointures ici : left join de walletHasCoins left join de coins */
-        $sql = 'SELECT wallet.id, wallet.title, wallet.last_edit
+        $sql = 'SELECT wallet.id, wallet.title, wallet.lastEdit
         FROM wallet
-        LEFT JOIN 
-        WHERE wallet.user_id = ?';
+        LEFT JOIN wallet_has_coins on wallet.id = wallet_has_coins.walletId
+        LEFT JOIN coins on wallet_has_coins.coinId = coins.id
+        WHERE wallet.userId = ?';
         $result = $this->createQuery($sql, [$userId]);
         $wallets = [];
         foreach ($result as $row)
         {
             $walletId = $row['id'];
             $wallets[$walletId] = $this->buildObject($row);
-            /* creation d'un objet walletHasCoins */
-            $intermediaireDAO = new WalletHasCoinsDAO();
-            $intermediaire = $intermediaireDAO->buildObject($row); /* inclusion de walletHasCoisDAO */
-            $wallets[$walletId]->addWalletHasCoins($intermediaire); /* creation attribut intermediraire */
-            /* creation objet coin */
-            $intermediaire2DAO = new CoinDAO();
-            $intermediaire2 = $intermediaire2DAO->buildObject($row); /* unclusion de CoinDAO */
+            /* 
+                        /* creation d'un objet walletHasCoins */
+/*                         $intermediaireDAO = new WalletHasCoinsDAO();
+ */
+                        /* inclusion de walletHasCoisDAO */
+                        /* creation attribut intermediraire */
+            /*             $intermediaire = $intermediaireDAO->buildObject($row); 
+                         $wallets[$walletId]->addWalletHasCoins($intermediaire); 
+                        /* creation objet coin */
+                        /* $intermediaire2DAO = new CoinDAO(); */
+            /*             $intermediaire2 = $intermediaire2DAO->buildObject($row); /* unclusion de CoinDAO */     
+             
         }
         $result->closeCursor();
         return $wallets;
@@ -49,9 +55,9 @@ class WalletDAO extends DAO
 
     public function get_wallet($walletId)
     {
-        $sql = 'SELECT wallet.id, wallet.title, wallet.last_edit, wallet.user_id
+        $sql = 'SELECT wallet.id, wallet.title, wallet.lastEdit, wallet.userId
         FROM wallet
-        INNER JOIN user ON wallet.user_id = user.id
+        INNER JOIN user ON wallet.userId = user.id
         WHERE wallet.id = ?';
         $result = $this->createQuery($sql, [$walletId]);
         $wallet = $result->fetch();
@@ -64,12 +70,12 @@ class WalletDAO extends DAO
         
     }
 
-    public function edit_wallet(Parameter $post, $walletId, $user_id)
+    public function edit_wallet(Parameter $post, $walletId, $userId)
     {
-        $sql = 'UPDATE wallet SET title=:title, last_edit=NOW(), user_id=:user_id WHERE id=:walletId';
+        $sql = 'UPDATE wallet SET title=:title, lastEdit=NOW(), userId=:userId WHERE id=:walletId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
-            'user_id' => $user_id,
+            'userId' => $userId,
             'walletId' => $walletId
         ]);
     }

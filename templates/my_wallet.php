@@ -34,10 +34,10 @@
                             foreach($coins as $coin) 
                             //!d($coins);
                             {
-                                $sum += $coin->get_coin_price() * $coin->get_coin_quantity();
+                                $sum += $coin->getCoinPrice() * $coin->getCoinQuantity();
                             ?>
                             <li class="list-group-item border-bottom d-flex">
-                                <span><strong class="text-success"><?= $coin->get_coin_symbol(); ?></strong> &#8771 <?= $coin->get_coin_price(); ?> &euro; x <?= $coin->get_coin_quantity(); ?></span>
+                                <span><strong class="text-success"><?= $coin->getCoinSymbol(); ?></strong> &#8771 <?= $coin->getCoinPrice(); ?> &euro; x <?= $coin->getCoinQuantity(); ?></span>
                                 <div class="ml-auto">
                                     <a class="text-danger" href="../public/index.php?route=delete_coin_from_wallet&wallet_id=<?= $wallet->getId(); ?>&w_coin_id=<?= $coin->get_coin_id(); ?>">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
