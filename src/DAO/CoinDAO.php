@@ -11,26 +11,26 @@ class CoinDAO extends DAO
     {
         $coin = new Coin();
         $coin->setId($row['id']);   
-        $coin->setCoin_name($row['coin_name']);
+        $coin->setCoinName($row['coinName']);
         $coin->setSymbol($row['symbol']);
         $coin->setSlug($row['slug']);
-        $coin->setMax_supply($row['max_supply']);
-        $coin->setCirculating_supply($row['circulating_supply']);
-        $coin->setTotal_supply($row['total_supply']);
-        $coin->setCmc_rank($row['cmc_rank']);
-        $coin->setLast_updated($row['last_updated']);
+        $coin->setMaxSupply($row['maxSupply']);
+        $coin->setCirculatingSupply($row['circulatingSupply']);
+        $coin->setTotalSupply($row['totalSupply']);
+        $coin->setCmcRank($row['cmcRank']);
+        $coin->setLastUpdated($row['lastUpdated']);
         $coin->setPrice($row['price']);
-        $coin->setVolume_24h($row['volume_24h']);
-        $coin->setPercent_change_1h($row['percent_change_1h']);
-        $coin->setPercent_change_24h($row['percent_change_24h']);
-        $coin->setPercent_change_7d($row['percent_change_7d']);
-        $coin->setMarket_cap($row['market_cap']);
+        $coin->setVolume24h($row['volume24h']);
+        $coin->setPercentChange1h($row['percentChange1h']);
+        $coin->setPercentChange24h($row['percentChange24h']);
+        $coin->setPercentChange7d($row['percentChange7d']);
+        $coin->setMarketCap($row['marketCap']);
         return $coin;
     }
 
     public function getCoins()
     {
-        $sql = 'SELECT id, coin_name, symbol, slug, max_supply, circulating_supply, total_supply, cmc_rank, last_updated, price, volume_24h, percent_change_1h, percent_change_24h, percent_change_7d, market_cap FROM coins';
+        $sql = 'SELECT id, coinName, symbol, slug, maxSupply, circulatingSupply, totalSupply, cmcRank, lastUpdated, price, volume24h, percentChange1h, percentChange24h, percentChange7d, marketCap FROM coins';
         $result = $this->createQuery($sql);
         $coins = [];
         foreach ($result as $row)
@@ -44,7 +44,7 @@ class CoinDAO extends DAO
 
     public function getCoinFromId($coin_id)
     {
-        $sql = 'SELECT id, coin_name, symbol, slug, max_supply, circulating_supply, total_supply, cmc_rank, last_updated, price, volume_24h, percent_change_1h, percent_change_24h, percent_change_7d, market_cap
+        $sql = 'SELECT id, coinName, symbol, slug, maxSupply, circulatingSupply, totalSupply, cmcRank, lastUpdated, price, volume24h, percentChange1h, percentChange24h, percentChange7d, marketCap
         FROM coins
         WHERE coins.id = ?';
         $result = $this->createQuery($sql, [$coin_id]);
@@ -60,35 +60,35 @@ class CoinDAO extends DAO
             $name = $coin->name;
             $symbol = $coin->symbol;
             $slug = $coin->slug;
-            $max_supply = (!empty($coin->max_supply)) ? $coin->max_supply : 0;
-            $circulating_supply = $coin->circulating_supply;
-            $total_supply = $coin->total_supply;
-            $cmc_rank = $coin->cmc_rank;
+            $maxSupply = (!empty($coin->max_supply)) ? $coin->max_supply : 0;
+            $circulatingSupply = $coin->circulating_supply;
+            $totalSupply = $coin->total_supply;
+            $cmcRank = $coin->cmc_rank;
             $price = $coin->quote->EUR->price;
-            $volume_24h = $coin->quote->EUR->volume_24h;
-            $percent_change_1h = $coin->quote->EUR->percent_change_1h;
-            $percent_change_24h = $coin->quote->EUR->percent_change_24h;
-            $percent_change_7d = $coin->quote->EUR->percent_change_7d;
-            $market_cap = $coin->quote->EUR->market_cap;
+            $volume24h = $coin->quote->EUR->volume_24h;
+            $percentChange1h = $coin->quote->EUR->percent_change_1h;
+            $percentChange24h = $coin->quote->EUR->percent_change_24h;
+            $percentChange7d = $coin->quote->EUR->percent_change_7d;
+            $marketCap = $coin->quote->EUR->market_cap;
                         
             $sql = "INSERT INTO coins 
-            (coin_name, symbol, slug, max_supply, circulating_supply, total_supply, cmc_rank,last_updated, price, volume_24h, percent_change_1h, percent_change_24h, percent_change_7d, market_cap)
-            VALUES ('$name', '$symbol', '$slug', {$max_supply},{$circulating_supply}, {$total_supply}, {$cmc_rank}, NOW(), {$price}, {$volume_24h}, {$percent_change_1h}, {$percent_change_24h}, {$percent_change_7d}, {$market_cap})
+            (coinName, symbol, slug, maxSupply, circulatingSupply, totalSupply, cmcRank,lastUpdated, price, volume24h, percentChange1h, percentChange24h, percentChange7d, marketCap)
+            VALUES ('$name', '$symbol', '$slug', {$maxSupply},{$circulatingSupply}, {$totalSupply}, {$cmcRank}, NOW(), {$price}, {$volume24h}, {$percentChange1h}, {$percentChange24h}, {$percentChange7d}, {$marketCap})
             ON DUPLICATE KEY UPDATE
-            coin_name = '$name',
+            coinName = '$name',
             symbol = '$symbol',
             slug = '$slug',
-            max_supply = {$max_supply},
-            circulating_supply = {$circulating_supply},
-            total_supply = {$total_supply},
-            cmc_rank = {$cmc_rank},
-            last_updated = NOW(),
+            maxSupply = {$maxSupply},
+            circulatingSupply = {$circulatingSupply},
+            totalSupply = {$totalSupply},
+            cmcRank = {$cmcRank},
+            lastUpdated = NOW(),
             price = {$price},
-            volume_24h = {$volume_24h},
-            percent_change_1h = {$percent_change_1h},
-            percent_change_24h = {$percent_change_24h},
-            percent_change_7d = {$percent_change_7d},
-            market_cap = {$market_cap}
+            volume24h = {$volume24h},
+            percentChange1h = {$percentChange1h},
+            percentChange24h = {$percentChange24h},
+            percentChange7d = {$percentChange7d},
+            marketCap = {$marketCap}
             ";
             $this->createQuery($sql);
         }

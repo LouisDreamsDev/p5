@@ -14,7 +14,7 @@
             <div class="card border-primary mb-3">
                 <div class="card-header bd-highlight mb-3">
                     <div class="card-subheader1 d-flex alert alert-light">
-                            <h4 class="card-title m-0 text-primary"><?= $coin->getCoin_name(); ?></h4>
+                            <h4 class="card-title m-0 text-primary"><?= $coin->getCoinName(); ?></h4>
                             <img src="" alt="">
                     </div>
                     <hr class="m-2">
@@ -28,40 +28,40 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Offre en circulation :</span> 
-                                <span class="text-nowrap"><?= $coin->getCirculating_supply(); ?> <?= $coin->getSymbol(); ?></span>
+                                <span class="text-nowrap"><?= $coin->getCirculatingSupply(); ?> <?= $coin->getSymbol(); ?></span>
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Offre totale :</span> 
-                                <span class="text-nowrap"><?= $coin->getTotal_supply(); ?> <?= $coin->getSymbol(); ?></span>
+                                <span class="text-nowrap"><?= $coin->getTotalSupply(); ?> <?= $coin->getSymbol(); ?></span>
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Offre max :</span> 
                                 <span class="text-nowrap">
-                                <?php if ($coin->getMax_supply() !== 'Non définie par le protocole') {echo $coin->getMax_supply().' '.$coin->getSymbol();} else {echo $coin->getMax_supply().' '.$coin->getCoin_name();} ?>
+                                <?php if ($coin->getMaxSupply() !== 'Non définie par le protocole') {echo $coin->getMaxSupply().' '.$coin->getSymbol();} else {echo $coin->getMaxSupply().' '.$coin->getCoinName();} ?>
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Volume / 24h :</span> 
-                                <span class="text-nowrap"><?= $coin->getVolume_24h(); ?>&euro;</span>
+                                <span class="text-nowrap"><?= $coin->getVolume24h(); ?>&euro;</span>
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Fluctuation (%) / 1h :</span> 
-                                <span class="text-nowrap"><?= $coin->getPercent_change_1h(); ?>%</span>
+                                <span class="text-nowrap"><?= $coin->getPercentChange1h(); ?>%</span>
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Fluctuation (%) / 24h :</span> 
-                                <span class="text-nowrap"><?= $coin->getPercent_change_24h(); ?>%</span>
+                                <span class="text-nowrap"><?= $coin->getPercentChange24h(); ?>%</span>
                             </li>
                                 <li class="list-group-item border-bottom d-flex justify-content-between">
                                     <span class="text-nowrap">Fluctuation (%) / 7d :</span> 
-                                    <span class="text-nowrap"><?= $coin->getPercent_change_7d(); ?>%</span>
+                                    <span class="text-nowrap"><?= $coin->getPercentChange7d(); ?>%</span>
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">Capital du marché :</span> 
-                                <span class="text-nowrap"><?= $coin->getMarket_cap(); ?>&euro;</span>
+                                <span class="text-nowrap"><?= $coin->getMarketCap(); ?>&euro;</span>
                             </li>
                             <li class="list-group-item border-bottom d-flex justify-content-between">
                                 <span class="text-nowrap">actualisé le :</span> 
-                                <span class="text-nowrap"><?= $coin->getLast_updated(); ?></span>
+                                <span class="text-nowrap"><?= $coin->getLastUpdated(); ?></span>
                             </li>
                         </ul>
                     </div>

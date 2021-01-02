@@ -18,7 +18,7 @@ class WalletDAO extends DAO
         $wallet = new Wallet();
         $wallet->setId($row['id']);
         $wallet->setTitle($row['title']);
-        $wallet->setLastModified($row['last_edit']);
+        $wallet->setLastModified($row['lastEdit']);
         return $wallet;
     }
 
@@ -27,6 +27,7 @@ class WalletDAO extends DAO
         /* faire les jointures ici : left join de walletHasCoins left join de coins */
         $sql = 'SELECT wallet.id, wallet.title, wallet.last_edit
         FROM wallet
+        LEFT JOIN 
         WHERE wallet.user_id = ?';
         $result = $this->createQuery($sql, [$userId]);
         $wallets = [];

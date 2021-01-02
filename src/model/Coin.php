@@ -12,7 +12,7 @@ class Coin
     /**
      * @var string
      */
-    private $coin_name;
+    private $coinName;
 
     /**
      * @var string
@@ -27,27 +27,27 @@ class Coin
     /**
      * @var int
      */
-    private $max_supply;
+    private $maxSupply;
 
     /** 
      * @var int
      */
-    private $circulating_supply;
+    private $circulatingSupply;
 
     /**
      * @var int
      */
-    private $total_supply;
+    private $totalSupply;
 
     /**
      * @var int
      */
-    private $cmc_rank;
+    private $cmcRank;
 
     /**
      * @var \DateTime
      */
-    private $last_updated;
+    private $lastUpdated;
 
     /**
      * @var int
@@ -57,27 +57,27 @@ class Coin
     /**
      * @var int
      */
-    private $volume_24h;
+    private $volume24h;
 
     /**
      * @var int
      */
-    private $percent_change_1h;
+    private $percentChange1h;
 
     /**
      * @var int
      */
-    private $percent_change_24h;
+    private $percentChange24h;
 
     /**
      * @var int
      */
-    private $percent_change_7d;
+    private $percentChange7d;
 
     /**
      * @var int
      */
-    private $market_cap;
+    private $marketCap;
 
     /**
      * @return int
@@ -98,17 +98,17 @@ class Coin
     /**
      * @return string
      */
-    public function getCoin_name()
+    public function getCoinName()
     {
-        return $this->coin_name;
+        return $this->coinName;
     }
 
     /**
-     * @param string $coin_name
+     * @param string $coinName
      */
-    public function setCoin_name($coin_name)
+    public function setCoinName($coinName)
     {
-        $this->coin_name = $coin_name;
+        $this->coinName = $coinName;
     }
 
     /**
@@ -146,88 +146,88 @@ class Coin
     /**
      * @return int
      */
-    public function getMax_supply()
+    public function getMaxSupply()
     {
-        return $this->max_supply;
+        return $this->maxSupply;
     }
 
     /**
-     * @param int $max_supply
+     * @param int $maxSupply
      */
-    public function setMax_supply($max_supply)
+    public function setMaxSupply($maxSupply)
     {
-        if($max_supply == 0)
+        if($maxSupply == 0)
         {
-            $this->max_supply ='Non définie par le protocole';
+            $this->maxSupply ='Non définie par le protocole';
         }
         else
         {
-            $this->max_supply = number_format($max_supply, 0, ',', ' ');
+            $this->maxSupply = number_format($maxSupply, 0, ',', ' ');
         }
     }
 
     /**
      * @return float
      */
-    public function getCirculating_supply()
+    public function getCirculatingSupply()
     {
-        return $this->circulating_supply;
+        return $this->circulatingSupply;
     }
 
     /**
-     * @param float $circulating_supply
+     * @param float $circulatingSupply
      */
-    public function setCirculating_supply($circulating_supply)
+    public function setCirculatingSupply($circulatingSupply)
     {
-        $this->circulating_supply = number_format($circulating_supply, 0, ',', ' ');
+        $this->circulatingSupply = number_format($circulatingSupply, 0, ',', ' ');
     }
 
     /**
      * @return int
      */
-    public function getTotal_supply()
+    public function getTotalSupply()
     {
-        return $this->total_supply;
+        return $this->totalSupply;
     }
 
     /**
-     * @param int $total_supply
+     * @param int $totalSupply
      */
-    public function setTotal_supply($total_supply)
+    public function setTotalSupply($totalSupply)
     {
-        $this->total_supply = number_format($total_supply, 0, ',', ' ');
+        $this->totalSupply = number_format($totalSupply, 0, ',', ' ');
     }
 
     /**
      * @return string
      */
-    public function getCmc_rank()
+    public function getCmcRank()
     {
-        return $this->cmc_rank;
+        return $this->cmcRank;
     }
 
     /**
-     * @param string $cmc_rank
+     * @param string $cmcRank
      */
-    public function setCmc_rank($cmc_rank)
+    public function setCmcRank($cmcRank)
     {
-        $this->cmc_rank = $cmc_rank;
+        $this->cmcRank = $cmcRank;
     }
 
     /**
      * @return \DateTime
      */
-    public function getLast_updated()
+    public function getLastUpdated()
     {
-        return $this->last_updated;
+        return $this->lastUpdated;
     }
 
     /**
-     * @param \DateTime $last_updated
+     * @param \DateTime $lastUpdated
      */
-    public function setLast_updated($last_updated)
+    public function setLastUpdated($lastUpdated)
     {
-        $this->last_updated = $last_updated;
+        $this->lastUpdated = $lastUpdated;
     }
 
     /**
@@ -255,101 +255,101 @@ class Coin
     /**
      * @return int
      */
-    public function getVolume_24h()
+    public function getVolume24h()
     {
-        return $this->volume_24h;
+        return $this->volume24h;
     }
 
     /**
-     * @param int $volume_24h
+     * @param int $volume24h
      */
-    public function setVolume_24h($volume_24h)
+    public function setVolume24h($volume24h)
     {
-        $this->volume_24h = number_format($volume_24h, 2, ',', ' ');
+        $this->volume24h = number_format($volume24h, 2, ',', ' ');
     }
 
     /**
      * @return int
      */
-    public function getPercent_change_1h()
+    public function getPercentChange1h()
     {
-        return $this->percent_change_1h;
+        return $this->percentChange1h;
     }
 
     /**
-     * @param int $percent_change_1h
+     * @param int $percentChange1h
      */
-    public function setPercent_change_1h($percent_change_1h)
+    public function setPercentChange1h($percentChange1h)
     {
-        if ($percent_change_1h > 0)
+        if ($percentChange1h > 0)
         {
-            $this->percent_change_1h = '+'.round($percent_change_1h, 2);
+            $this->percentChange1h = '+'.round($percentChange1h, 2);
         }
         else
         {
-            $this->percent_change_1h = round($percent_change_1h, 2);
+            $this->percentChange1h = round($percentChange1h, 2);
         }
     }
 
     /**
      * @return int
      */
-    public function getPercent_change_24h()
+    public function getPercentChange24h()
     {
-        return $this->percent_change_24h;
+        return $this->percentChange24h;
     }
 
     /**
-     * @param int $percent_change_24h
+     * @param int $percentChange24h
      */
-    public function setPercent_change_24h($percent_change_24h)
+    public function setPercentChange24h($percentChange24h)
     {
-        if ($percent_change_24h > 0)
+        if ($percentChange24h > 0)
         {
-            $this->percent_change_24h = '+'.round($percent_change_24h, 2);
+            $this->percentChange24h = '+'.round($percentChange24h, 2);
         }
         else
         {
-            $this->percent_change_24h = round($percent_change_24h, 2);
+            $this->percentChange24h = round($percentChange24h, 2);
         }
     }
 
     /**
      * @return int
      */
-    public function getPercent_change_7d()
+    public function getPercentChange7d()
     {
-        return $this->percent_change_7d;
+        return $this->percentChange7d;
     }
 
     /**
-     * @param int $percent_change_7d
+     * @param int $percentChange7d
      */
-    public function setPercent_change_7d($percent_change_7d)
+    public function setPercentChange7d($percentChange7d)
     {
-        if ($percent_change_7d > 0)
+        if ($percentChange7d > 0)
         {
-            $this->percent_change_7d = '+'.round($percent_change_7d, 2);
+            $this->percentChange7d = '+'.round($percentChange7d, 2);
         }
         else
         {
-            $this->percent_change_7d = round($percent_change_7d, 2);
+            $this->percentChange7d = round($percentChange7d, 2);
         }
     }
 
     /**
      * @return int
      */
-    public function getMarket_cap()
+    public function getMarketCap()
     {
-        return $this->market_cap;
+        return $this->marketCap;
     }
 
     /**
-     * @param int $market_cap
+     * @param int $marketCap
      */
-    public function setMarket_cap($market_cap)
+    public function setMarketCap($marketCap)
     {
-        $this->market_cap = number_format($market_cap, 0, ',', ' ');
+        $this->marketCap = number_format($marketCap, 0, ',', ' ');
     }
 }
