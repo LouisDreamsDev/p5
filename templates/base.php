@@ -20,16 +20,17 @@
         <div class="lx">
             <ul class="nav d-flex justify-content-between">
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php">Accueil</a></li>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=my_wallet">Mes Portefeuilles</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=myWallet">Mes Portefeuilles</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=refreshApi">Refresh</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=contact">Contact</a></li>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=login">Se connecter</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=login">Se Connecter</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=register">S'inscrire</a></li>
             </ul>
         </div>
     </nav>
 </header>
 <div id="content">
+    <h2 class="alert alert-primary text-center"><?= $this->title ?></h2>
     <?= $content ?>
 </div>
 <footer>

@@ -37,7 +37,7 @@ class WalletHasCoinsDAO extends DAO
         return $coins;
     }
 
-    public function edit_coinQuantity($walletId, $coinId, $coinQuantity)
+    public function editCoinQuantity($walletId, $coinId, $coinQuantity)
     {
         $sql = 'UPDATE wallet_has_coins SET walletId=:walletId, coinId=:coinId, coinQuantity=:coinQuantity';
         $this->createQuery($sql, [
@@ -47,7 +47,7 @@ class WalletHasCoinsDAO extends DAO
         ]);
     }
 
-    public function delete_coin_from_wallet($walletId, $coinId)
+    public function deleteCoinFromWallet($walletId, $coinId)
     {
         $sql = 'DELETE FROM wallet_has_coins WHERE wallet_has_coins.walletId = ? AND wallet_has_coins.coinId = ?';
         $this->createQuery($sql, [$walletId, $coinId]);

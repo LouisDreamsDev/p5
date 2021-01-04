@@ -15,7 +15,6 @@
                 <div class="card-header bd-highlight mb-3">
                     <div class="card-subheader1 d-flex alert alert-light">
                             <h4 class="card-title m-0 text-primary"><?= $coin->getCoinName(); ?></h4>
-                            <img src="" alt="">
                     </div>
                     <hr class="m-2">
                     <div class="pl-4 pr-3 card-subheader2 d-flex justify-content-between">

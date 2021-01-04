@@ -38,27 +38,24 @@ class WalletDAO extends DAO
         $wallets = [];
         foreach ($result as $row)
         {
-            !d($row);
             $walletId = $row['id'];
             $wallets[$walletId] = $this->buildObject($row);
-
             /* creation d'un objet walletHasCoins */
             $objWalletHasCoinsDAO = new WalletHasCoinsDAO();
-            $useWalletHasCoinsDAO = $objWalletHasCoinsDAO->buildObject($row); 
-            !d($useWalletHasCoinsDAO);      
+            $useWalletHasCoinsDAO = $objWalletHasCoinsDAO->buildObject($row);    
             $wallets[$walletId]->addWalletHasCoins($useWalletHasCoinsDAO);
-
             /* creation objet coin */
-            $objCoinDAO = new CoinDAO();
+            /* $objCoinDAO = new CoinDAO();
             $useCoinDAO = $objCoinDAO->buildObject($row);
-            !d($useCoinDAO);      
-            $wallets[$walletId]->addCoins($useCoinDAO); 
+            d($useCoinDAO);      
+            $wallets[$walletId]->addCoins($useCoinDAO); */
         }
         $result->closeCursor();
+        d($wallets);
         return $wallets;
     }
 
-    public function get_wallet($walletId)
+    public function getWallet($walletId)
     {
         $sql = 'SELECT wallet.id, wallet.title, wallet.lastEdit, wallet.userId
         FROM wallet
@@ -70,12 +67,12 @@ class WalletDAO extends DAO
         return $this->buildObject($wallet);
     }
 
-    public function add_wallet()
+    public function createWallet()
     {
         
     }
 
-    public function edit_wallet(Parameter $post, $walletId, $userId)
+    public function editWallet(Parameter $post, $walletId, $userId)
     {
         $sql = 'UPDATE wallet SET title=:title, lastEdit=NOW(), userId=:userId WHERE id=:walletId';
         $this->createQuery($sql, [
@@ -85,7 +82,7 @@ class WalletDAO extends DAO
         ]);
     }
 
-    public function delete_wallet($walletId)
+    public function deleteWallet($walletId)
     {
         $sql = 'DELETE FROM wallet_has_coins WHERE walletId = ?';
         $this->createQuery($sql, [$walletId]);

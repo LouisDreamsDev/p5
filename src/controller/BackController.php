@@ -3,7 +3,6 @@
 namespace App\src\controller;
 
 use App\config\Parameter;
-use App\src\model\Wallet;
 
 class BackController extends Controller
 {
@@ -48,43 +47,33 @@ class BackController extends Controller
         }
     }
 
-    public function my_wallets()
+    public function myWallets()
     {
         if($this->checkLoggedIn()) {
             $userId = $this->session->get('id');
             $wallets = $this->walletDAO->getWalletsFromUser($userId);
-            d($wallets);
-            $wallet_content = [];
-            foreach($wallets as $wallet)
-            {
-                d($wallet);
-                $wallet_id = $wallet->getId();
-                array_push($wallet_content, $this->walletHasCoinsDAO->getCoinsFromWallet($wallet_id));
-            }
-            d($wallet_content);
             return $this->view->render('my_wallet', [
                 'wallets' => $wallets,
-                'wallet_content' => $wallet_content,
             ]);
         }
     }
 
-    public function create_wallet()
+    public function createWallet()
     {
 
     }
 
-    public function edit_wallet(Parameter $post, $wallet_id)
+    public function editWallet(Parameter $post, $walletId)
     {
-        $wallet = $this->walletDAO->get_wallet($wallet_id);
-        $coins = $this->walletHasCoinsDAO->getCoinsFromWallet($wallet_id);
+        $wallet = $this->walletDAO->getWallet($walletId);
+        $coins = $this->walletHasCoinsDAO->getCoinsFromWallet($walletId);
         if($post->get('submit')) 
         {
             $errors = $this->validation->validate($post, 'Wallet');
             if (!$errors)
             {
-                $this->walletDAO->edit_wallet($post, $wallet_id, $this->session->get('id'));
-                $this->walletHasCoinsDAO->edit_coin_quantity($wallet_id, $post->get('w_coin_id'), $post->get('coin_quantity'));
+                $this->walletDAO->editWallet($post, $walletId, $this->session->get('id'));
+                $this->walletHasCoinsDAO->editCoinQuantity($walletId, $post->get('CoinId'), $post->get('coinQuantity'));
                 $this->session->set('edit_wallet', 'Le portefeuille a bien été modifié.');
                 header('Location: ../public/index.php?route=my_wallet');
             }
@@ -102,20 +91,20 @@ class BackController extends Controller
         ]);
     }
 
-    public function delete_wallet($wallet_id) 
+    public function deleteWallet($walletId) 
     {
         if($this->checkLoggedIn()) {
-            $this->walletDAO->delete_wallet($wallet_id);
+            $this->walletDAO->deleteWallet($walletId);
             $this->session->set('delete_wallet', 'Le portefeuille a bien été supprimé.');
             header('Location: ../public/index.php?route=my_wallet');
         }
     }
 
-    public function delete_coin_from_wallet($wallet_id, $w_coin_id)
+    public function deleteCoinFromWallet($walletId, $coinId)
     {
         if($this->checkLoggedIn())
         {
-            $this->walletHasCoinsDAO->delete_coin_from_wallet($wallet_id, $w_coin_id);
+            $this->walletHasCoinsDAO->deleteCoinFromWallet($walletId, $coinId);
             $this->session->set('delete_wallet', 'L\'asset a bien été supprimé.');
             header('Location: ../public/index.php?route=my_wallet');
         }

@@ -3,7 +3,7 @@
 <?= $this->session->show('error_login'); ?>
 <?= $this->session->show('need_login'); ?>
 
-<h3 class="text-center py-4 alert alert-primary">Se connecter</h3>
+<h3 class="text-center py-4 alert alert-primary">Se Connecter</h3>
 
 <form method="post" action="../public/index.php?route=login">
     <div class="form-group">

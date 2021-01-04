@@ -39,17 +39,17 @@ class Router
                 elseif($route === 'contact'){
                     $this->backController->contact();
                 }
-                elseif($route === 'my_wallet'){
-                    $this->backController->my_wallets();
+                elseif($route === 'myWallet'){
+                    $this->backController->myWallets();
                 }
-                elseif($route === 'delete_wallet'){
-                    $this->backController->delete_wallet($this->request->getGet()->get('wallet_id'));
+                elseif($route === 'deleteWallet'){
+                    $this->backController->deleteWallet($this->request->getGet()->get('walletId'));
                 }
-                elseif($route === 'edit_wallet'){
-                    $this->backController->edit_wallet($this->request->getPost(), $this->request->getGet()->get('wallet_id'));
+                elseif($route === 'editWallet'){
+                    $this->backController->editWallet($this->request->getPost(), $this->request->getGet()->get('walletId'));
                 }
-                elseif($route === 'delete_coin_from_wallet'){
-                    $this->backController->delete_coin_from_wallet($this->request->getGet()->get('wallet_id'), $this->request->getGet()->get('w_coin_id'));
+                elseif($route === 'deleteCoinFromWallet'){
+                    $this->backController->deleteCoinFromWallet($this->request->getGet()->get('walletId'), $this->request->getGet()->get('coinId'));
                 }
                 elseif($route === 'updatePassword'){
                     $this->backController->updatePassword($this->request->getPost());
