@@ -7,7 +7,7 @@ use App\src\model\WalletHasCoins;
 class WalletHasCoinsDAO extends DAO
 
 {
-    private function buildObject($row)
+    public function buildObject($row)
     {
         $walletHasCoins = new WalletHasCoins();
         $walletHasCoins->setWalletId($row['walletId']);

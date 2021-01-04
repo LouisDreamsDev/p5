@@ -4,6 +4,10 @@ namespace App\src\DAO;
 
 use App\src\model\Wallet;
 
+use App\src\model\WalletHasCoins;
+
+use App\src\model\Coin;
+
 use App\config\Parameter;
 
 use App\src\DAO\WalletHasCoinsDAO;
@@ -25,7 +29,7 @@ class WalletDAO extends DAO
     public function getWalletsFromUser($userId)
     {
         /* faire les jointures ici : left join de walletHasCoins left join de coins */
-        $sql = 'SELECT wallet.id, wallet.title, wallet.lastEdit
+        $sql = 'SELECT wallet.id, wallet.title, wallet.lastEdit, wallet_has_coins.walletId, wallet_has_coins.coinId, wallet_has_coins.coinQuantity, coins.id, coins.coinName, coins.symbol, coins.slug, coins.maxSupply, coins.circulatingSupply, coins.totalSupply, coins.cmcRank, coins.lastUpdated, coins.price, coins.volume24h, coins.percentChange1h, coins.percentChange24h, coins.percentChange7d, coins.marketCap
         FROM wallet
         LEFT JOIN wallet_has_coins on wallet.id = wallet_has_coins.walletId
         LEFT JOIN coins on wallet_has_coins.coinId = coins.id
@@ -34,20 +38,21 @@ class WalletDAO extends DAO
         $wallets = [];
         foreach ($result as $row)
         {
+            !d($row);
             $walletId = $row['id'];
             $wallets[$walletId] = $this->buildObject($row);
-            /* 
-                        /* creation d'un objet walletHasCoins */
-/*                         $intermediaireDAO = new WalletHasCoinsDAO();
- */
-                        /* inclusion de walletHasCoisDAO */
-                        /* creation attribut intermediraire */
-            /*             $intermediaire = $intermediaireDAO->buildObject($row); 
-                         $wallets[$walletId]->addWalletHasCoins($intermediaire); 
-                        /* creation objet coin */
-                        /* $intermediaire2DAO = new CoinDAO(); */
-            /*             $intermediaire2 = $intermediaire2DAO->buildObject($row); /* unclusion de CoinDAO */     
-             
+
+            /* creation d'un objet walletHasCoins */
+            $objWalletHasCoinsDAO = new WalletHasCoinsDAO();
+            $useWalletHasCoinsDAO = $objWalletHasCoinsDAO->buildObject($row); 
+            !d($useWalletHasCoinsDAO);      
+            $wallets[$walletId]->addWalletHasCoins($useWalletHasCoinsDAO);
+
+            /* creation objet coin */
+            $objCoinDAO = new CoinDAO();
+            $useCoinDAO = $objCoinDAO->buildObject($row);
+            !d($useCoinDAO);      
+            $wallets[$walletId]->addCoins($useCoinDAO); 
         }
         $result->closeCursor();
         return $wallets;

@@ -138,7 +138,7 @@ class WalletHasCoins
         $this->coins = $coins;
     }
 
-    public function addCoins(Coin $coin)
+    public function addCoins($coin)
     {
         $this->coins[] = $coin;
     }

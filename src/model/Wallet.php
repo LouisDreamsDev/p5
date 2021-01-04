@@ -101,7 +101,7 @@ class Wallet
      * @param  mixed $walletHasCoins
      * @return void
      */
-    public function addWalletHasCoins($walletHasCoins)
+    public function addWalletHasCoins(WalletHasCoins $walletHasCoins)
     {
         $this->walletHasCoins[] = $walletHasCoins;
     }

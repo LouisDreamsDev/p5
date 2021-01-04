@@ -3,6 +3,7 @@
 namespace App\src\controller;
 
 use App\config\Parameter;
+use App\src\model\Wallet;
 
 class BackController extends Controller
 {
@@ -50,15 +51,17 @@ class BackController extends Controller
     public function my_wallets()
     {
         if($this->checkLoggedIn()) {
-            $user_id = $this->session->get('id');
-            $wallets = $this->walletDAO->getWalletsFromUser($user_id);
+            $userId = $this->session->get('id');
+            $wallets = $this->walletDAO->getWalletsFromUser($userId);
+            d($wallets);
             $wallet_content = [];
             foreach($wallets as $wallet)
             {
+                d($wallet);
                 $wallet_id = $wallet->getId();
                 array_push($wallet_content, $this->walletHasCoinsDAO->getCoinsFromWallet($wallet_id));
             }
-            !d($wallet_content);
+            d($wallet_content);
             return $this->view->render('my_wallet', [
                 'wallets' => $wallets,
                 'wallet_content' => $wallet_content,
@@ -66,7 +69,7 @@ class BackController extends Controller
         }
     }
 
-    public function add_wallet()
+    public function create_wallet()
     {
 
     }
