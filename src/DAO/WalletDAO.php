@@ -45,10 +45,12 @@ class WalletDAO extends DAO
             $useWalletHasCoinsDAO = $objWalletHasCoinsDAO->buildObject($row);    
             $wallets[$walletId]->addWalletHasCoins($useWalletHasCoinsDAO);
             /* creation objet coin */
-            /* $objCoinDAO = new CoinDAO();
+            $objCoinDAO = new CoinDAO();
             $useCoinDAO = $objCoinDAO->buildObject($row);
-            d($useCoinDAO);      
-            $wallets[$walletId]->addCoins($useCoinDAO); */
+            d($useCoinDAO);  
+            //echo $useCoinDAO->getCoinPrice();
+            //$wallets[$walletId]->addCoins($useCoinDAO);
+            d($wallets[$walletId]);
         }
         $result->closeCursor();
         d($wallets);

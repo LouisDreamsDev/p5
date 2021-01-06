@@ -30,7 +30,7 @@
     </nav>
 </header>
 <div id="content">
-    <h2 class="alert alert-primary text-center"><?= $this->title ?></h2>
+    <h2 class="text-center py-4 alert alert-primary"><?= $this->title ?></h2>
     <?= $content ?>
 </div>
 <footer>

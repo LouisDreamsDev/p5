@@ -352,4 +352,38 @@ class Coin
     {
         $this->marketCap = number_format($marketCap, 0, ',', ' ');
     }
+
+    /**
+     * getCoins
+     *
+     * @return array
+     */
+    public function getCoins()
+    {
+        return $this->coins;
+    }
+    
+    /**
+     * setCoins
+     *
+     * @param  mixed $coins
+     * @return void
+     */
+    
+    public function setCoins($coins = [])
+    {
+        $this->coins = $coins;
+    }
+    
+    /**
+     * addCoins
+     *
+     * @param  mixed $coin
+     * @return void
+     */
+
+    public function addCoins($coin)
+    {
+        $this->coins[] = $coin;
+    }
 }

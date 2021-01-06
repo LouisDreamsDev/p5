@@ -1,7 +1,5 @@
 <?php $this->title = "Inscription"; ?>
 
-<h3 class="text-center py-4 alert alert-primary">S'inscrire</h3>
-
 <form method="post" action="../public/index.php?route=register">
     <div class="form-group">
         <label for="pseudo">Pseudo</label>

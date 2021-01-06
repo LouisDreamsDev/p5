@@ -1,5 +1,4 @@
 <?php $this->title = "Contact"; ?>
-<h3 class="text-center py-4 alert alert-primary">Contact</h3>
 
 <form id="contact">
   <div class="form-group">

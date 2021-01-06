@@ -126,9 +126,13 @@ class WalletHasCoins
         $this->coinQuantity = $coinQuantity;
     }
     
-    /* getters setters */
-    /* function pour ajouter une entrée  */
-    public function getCoin()
+    
+    /**
+     * getCoins
+     *
+     * @return array
+     */
+    public function getCoins()
     {
         return $this->coins;
     }
@@ -139,6 +143,7 @@ class WalletHasCoins
      * @param  mixed $coins
      * @return void
      */
+    
     public function setCoins($coins = [])
     {
         $this->coins = $coins;
@@ -150,6 +155,7 @@ class WalletHasCoins
      * @param  mixed $coin
      * @return void
      */
+
     public function addCoins($coin)
     {
         $this->coins[] = $coin;

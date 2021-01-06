@@ -5,7 +5,7 @@
 <?= $this->session->show('logout'); ?>
 <?= $this->session->show('delete_account'); ?>
 <div id="home">
-    <h2 class="text-center py-4 my-4 alert alert-primary">Bienvenue sur Wallet(x) !<br>La plateforme FR des statistiques globales du marché des cryptomonnaies !</h2>
+    <h2 class="text-center py-4 alert alert-primary">Bienvenue sur Wallet(x) !</h2>
     <hr>
     <form id="home-cards" action="../public/index.php?route=mywallet" method="get" class="d-flex flex-wrap justify-content-around">
         <?php

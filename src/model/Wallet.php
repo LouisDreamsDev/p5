@@ -106,4 +106,6 @@ class Wallet
         $this->walletHasCoins[] = $walletHasCoins;
     }
 
+
+
 }
