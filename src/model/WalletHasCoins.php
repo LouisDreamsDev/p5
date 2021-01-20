@@ -143,21 +143,10 @@ class WalletHasCoins
      * @param  mixed $coins
      * @return void
      */
-    
-    public function setCoins($coins = [])
-    {
-        $this->coins = $coins;
-    }
-    
-    /**
-     * addCoins
-     *
-     * @param  mixed $coin
-     * @return void
-     */
 
-    public function addCoins($coin)
+    public function setCoins(Coin $coin)
     {
-        $this->coins[] = $coin;
+        $this->coins = $coin;
     }
+
 }

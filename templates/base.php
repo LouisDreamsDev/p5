@@ -21,16 +21,16 @@
             <ul class="nav d-flex justify-content-between">
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php">Accueil</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=myWallet">Mes Portefeuilles</a></li>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=refreshApi">Refresh</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=contact">Contact</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=login">Se Connecter</a></li>
                 <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=register">S'inscrire</a></li>
+                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=refreshApi">Refresh</a></li>
             </ul>
         </div>
     </nav>
 </header>
 <div id="content">
-    <h2 class="text-center py-4 alert alert-primary"><?= $this->title ?></h2>
+    <h4 class="path-title text-center py-3 alert alert-primary"><?= $this->title ?></h4>
     <?= $content ?>
 </div>
 <footer>

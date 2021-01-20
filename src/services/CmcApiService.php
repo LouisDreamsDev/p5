@@ -4,8 +4,6 @@ namespace App\src\services;
 
 use Exception;
 
-use App\src\DAO;
-
 class CmcApiService
 {
 
@@ -39,6 +37,7 @@ class CmcApiService
             $response = curl_exec($curl); // Send the request, save the response
             curl_close($curl); // Close request
             $json = json_decode($response);
+            // only use the data of the response (not status)
             return $json->data;
         }
         catch (Exception $e)

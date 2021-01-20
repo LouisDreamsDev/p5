@@ -1,27 +1,16 @@
 #main-logo {
   margin: 0 0 7px 0;
 }
-#x-title {
-  color: #69a8ec;
-}
-
-.nav {
-  background-color: #e3f2fd;
-}
 #home-cards {
   width: 80%;
   margin: auto;
 }
 .card {
-  width: 30rem;
+  width: 25rem;
   margin: 4px;
 }
 .card-text {
   font-size: 0.9em;
-}
-.card-select {
-  width: 80%;
-  height: 10px;
 }
 label {
   margin: 16px 0 16px 0;

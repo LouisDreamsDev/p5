@@ -8,10 +8,7 @@ class FrontController extends Controller
 {
     public function home()
     {
-        $coins = $this->coinDAO->getCoins();
-        return $this->view->render('home', [
-            'coins' => $coins,
-        ]);
+        return $this->view->render('home');
     }
 
     public function refreshApiData()
@@ -19,6 +16,37 @@ class FrontController extends Controller
         $call = $this->CmcApiService->APICall();
         $this->coinDAO->addApiDataIntoDb($call);
         header('Location: ../public/index.php');
+    }
+
+    public function showJson() 
+    {
+        $coins = $this->coinDAO->getCoins();
+        $result = [];
+        $result['$coins'] = [];
+        foreach($coins as $coin)
+        {
+            $set = [
+                "id" => $coin->getId(),
+                "name" => $coin->getCoinName(),
+                "symbol" => $coin->getSymbol(),
+                "slug" => $coin->getSlug(),
+                "maxSupply" => $coin->getMaxSupply(),
+                "totalSupply" => $coin->getTotalSupply(),
+                "cmcRank" => $coin->getCmcRank(),
+                "lastUpdated" => $coin->getLastUpdated(),
+                "price" => $coin->getPrice(),
+                "volume24h" => $coin->getVolume24h(),
+                "percentChange1h" => $coin->getPercentChange1h(),
+                "percentChange24h" => $coin->getPercentChange24h(),
+                "percentChange7d" => $coin->getPercentChange7d(),
+                "marketCap" => $coin->getMarketCap()
+            ];
+            $result['$coins'][] = $set;
+        }
+
+        $json = json_encode($result);
+        header('Content-Type: application/json');
+        echo $json;
     }
 
     public function register(Parameter $post)

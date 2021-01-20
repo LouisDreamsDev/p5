@@ -10,7 +10,7 @@ class CoinDAO extends DAO
     public function buildObject($row)
     {
         $coin = new Coin();
-        $coin->setId($row['id']);   
+        $coin->setId($row['coinId']);   
         $coin->setCoinName($row['coinName']);
         $coin->setSymbol($row['symbol']);
         $coin->setSlug($row['slug']);
@@ -30,12 +30,12 @@ class CoinDAO extends DAO
 
     public function getCoins()
     {
-        $sql = 'SELECT id, coinName, symbol, slug, maxSupply, circulatingSupply, totalSupply, cmcRank, lastUpdated, price, volume24h, percentChange1h, percentChange24h, percentChange7d, marketCap FROM coins';
+        $sql = 'SELECT id as coinId, coinName, symbol, slug, maxSupply, circulatingSupply, totalSupply, cmcRank, lastUpdated, price, volume24h, percentChange1h, percentChange24h, percentChange7d, marketCap FROM coins';
         $result = $this->createQuery($sql);
         $coins = [];
         foreach ($result as $row)
         {
-            $coinId = $row['id'];
+            $coinId = $row['coinId'];
             $coins[$coinId] = $this->buildObject($row);
         }
         $result->closeCursor();
@@ -44,7 +44,7 @@ class CoinDAO extends DAO
 
     public function getCoinFromId($coin_id)
     {
-        $sql = 'SELECT id, coinName, symbol, slug, maxSupply, circulatingSupply, totalSupply, cmcRank, lastUpdated, price, volume24h, percentChange1h, percentChange24h, percentChange7d, marketCap
+        $sql = 'SELECT id as coinId, coinName, symbol, slug, maxSupply, circulatingSupply, totalSupply, cmcRank, lastUpdated, price, volume24h, percentChange1h, percentChange24h, percentChange7d, marketCap
         FROM coins
         WHERE coins.id = ?';
         $result = $this->createQuery($sql, [$coin_id]);

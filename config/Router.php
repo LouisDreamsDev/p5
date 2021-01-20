@@ -66,8 +66,11 @@ class Router
                 elseif($route === 'administration'){
                     $this->backController->administration();
                 }
-                elseif ($route === 'refreshApi'){
+                elseif($route === 'refreshApi'){
                     $this->frontController->refreshApiData();
+                }
+                elseif($route === 'json'){
+                    $this->frontController->showJson();
                 }
                 else{
                     $this->errorController->errorNotFound();
