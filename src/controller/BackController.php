@@ -52,7 +52,7 @@ class BackController extends Controller
         if($this->checkLoggedIn()) {
             $userId = $this->session->get('id');
             $wallets = $this->walletDAO->getWalletsFromUser($userId);
-            return $this->view->render('my_wallet', [
+            return $this->view->render('myWallet', [
                 'wallets' => $wallets,
             ]);
         }
@@ -74,10 +74,10 @@ class BackController extends Controller
             {
                 $this->walletDAO->editWallet($post, $walletId, $this->session->get('id'));
                 $this->walletHasCoinsDAO->editCoinQuantity($walletId, $post->get('CoinId'), $post->get('coinQuantity'));
-                $this->session->set('edit_wallet', 'Le portefeuille a bien été modifié.');
-                header('Location: ../public/index.php?route=my_wallet');
+                $this->session->set('editWallet', 'Le portefeuille a bien été modifié.');
+                header('Location: ../public/index.php?route=myWallet');
             }
-            return $this->view->render('edit_wallet', [
+            return $this->view->render('editWallet', [
                 'post' => $post,
                 'coins' => $coins,
                 'errors' => $errors,
@@ -85,7 +85,7 @@ class BackController extends Controller
         }
         $post->set('id', $wallet->getId());
         $post->set('title', $wallet->getTitle());
-        return $this->view->render('edit_wallet', [
+        return $this->view->render('editWallet', [
             'post' => $post,
             'coins' => $coins
         ]);
@@ -96,7 +96,7 @@ class BackController extends Controller
         if($this->checkLoggedIn()) {
             $this->walletDAO->deleteWallet($walletId);
             $this->session->set('delete_wallet', 'Le portefeuille a bien été supprimé.');
-            header('Location: ../public/index.php?route=my_wallet');
+            header('Location: ../public/index.php?route=myWallet');
         }
     }
 
@@ -106,7 +106,7 @@ class BackController extends Controller
         {
             $this->walletHasCoinsDAO->deleteCoinFromWallet($walletId, $coinId);
             $this->session->set('delete_wallet', 'L\'asset a bien été supprimé.');
-            header('Location: ../public/index.php?route=my_wallet');
+            header('Location: ../public/index.php?route=myWallet');
         }
     }
 
@@ -122,10 +122,10 @@ class BackController extends Controller
         if($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
-                $this->session->set('update_password', 'Le mot de passe a bien été mis à jour.');
+                $this->session->set('updatePassword', 'Le mot de passe a bien été mis à jour.');
                 header('Location: ../public/index.php?route=profile');
             }
-            return $this->view->render('update_password');
+            return $this->view->render('updatePassword');
         }
     }
 
@@ -142,7 +142,7 @@ class BackController extends Controller
         if($this->checkLoggedIn())
         {
             $this->userDAO->deleteAccount($this->session->get('pseudo'));
-            $this->logoutOrDelete('delete_account');   
+            $this->logoutOrDelete('deleteAccount');   
         }
     }
 

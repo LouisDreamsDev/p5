@@ -45,8 +45,8 @@ class WalletDAO extends DAO
 
             $objCoinDAO = new CoinDAO();
             $useCoinModel = $objCoinDAO->buildObject($row);
-            
             $walletHasCoinModel->setCoins($useCoinModel);
+            d($walletHasCoinModel->getCoins());
             $wallets[$walletId]->addWalletHasCoins($walletHasCoinModel);
         }
         $result->closeCursor();

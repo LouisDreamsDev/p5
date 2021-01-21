@@ -1,0 +1,10 @@
+style de la vue my_wallet:
+> nouveau probleme d'affichage de chaque coin dans sa wallet respective
+
+commenter le foreach de la vue home
+requete ajax pour recuperer les donnees de route=json
+creer une classe a invoquer dans la vue pour indexer les valeurs a des variables
+
+form inutile pour le C de crud
+passer par les pages editions pour creer une nouvelle wallet
+
