@@ -36,7 +36,6 @@ class WalletDAO extends DAO
         $wallets = [];
         foreach ($result as $row)
         {
-            // d($row);
             $walletId = $row['id'];
             $wallets[$walletId] = $this->buildObject($row);
             

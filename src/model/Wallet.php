@@ -104,6 +104,7 @@ class Wallet
     public function addWalletHasCoins(WalletHasCoins $walletHasCoins)
     {
         $this->walletHasCoins[] = $walletHasCoins;
+        d($this->walletHasCoins);
     }
 
 

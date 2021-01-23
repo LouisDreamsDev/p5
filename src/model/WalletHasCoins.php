@@ -150,7 +150,7 @@ class WalletHasCoins
     public function setCoins(Coin $coin)
     {
         $this->coins = $coin;
-        d($this->coins);
+        // d($this->coins);
     }
     
     /**
@@ -161,7 +161,8 @@ class WalletHasCoins
      */
     public function addCoins(Coin $coin)
     {
-        array_push($this->coins, $coin);
-        d($this->coins);
+        $this->coins = $coin;
+        //array_push($this->coins, $coin);
+        // d($this->coins);
     }
 }
