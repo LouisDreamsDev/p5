@@ -127,13 +127,16 @@ class WalletHasCoins
     }
     
     
+    
     /**
      * getCoins
      *
      * @return array
      */
+
     public function getCoins()
     {
+        // d($this->coins);
         return $this->coins;
     }
     
@@ -141,7 +144,7 @@ class WalletHasCoins
      * setCoins
      *
      * @param  mixed $coins
-     * @return void
+     * 
      */
 
     public function setCoins(Coin $coin)
@@ -149,9 +152,16 @@ class WalletHasCoins
         $this->coins = $coin;
         d($this->coins);
     }
-
+    
+    /**
+     * addCoins
+     *
+     * @param  mixed $coin
+     * 
+     */
     public function addCoins(Coin $coin)
     {
-        $this->coins[] = $coin;
+        array_push($this->coins, $coin);
+        d($this->coins);
     }
 }

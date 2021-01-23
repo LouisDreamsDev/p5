@@ -9,7 +9,7 @@
 
 foreach($wallets as $wallet)
 {
-    d($wallet);
+    // d($wallet);
     ?>
     <div class="card">
         <div class="card-title">
@@ -19,11 +19,11 @@ foreach($wallets as $wallet)
         <div class="card-body">
             <ul>
             <?php
-            d($wallet->getWalletHasCoins());
+            // d($wallet->getWalletHasCoins());
             foreach($wallet->getWalletHasCoins() as $whc)
             {
                 ?>
-                <li><?php  print_r($whc->getCoins()) ?></li>
+                <li><?php // d($whc->getCoins()) ?></li>
                 <?php
             }
             ?>
