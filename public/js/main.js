@@ -1,1 +1,1 @@
-alert('hello');
+const homeInstance = new HomeClass();
