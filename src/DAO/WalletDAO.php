@@ -34,20 +34,29 @@ class WalletDAO extends DAO
         WHERE wallet.userId = ?';
         $result = $this->createQuery($sql, [$userId]);
         $wallets = [];
+        $walletHasCoinsDAO = new WalletHasCoinsDAO();
+        $coinDAO = new CoinDAO();
         foreach ($result as $row)
         {
             $walletId = $row['id'];
+            // d($walletId);
             $wallets[$walletId] = $this->buildObject($row);
-            
-            $objWalletHasCoinsDAO = new WalletHasCoinsDAO();
-            $walletHasCoinModel = $objWalletHasCoinsDAO->buildObject($row);
 
-            $objCoinDAO = new CoinDAO();
-            $useCoinModel = $objCoinDAO->buildObject($row);
-            $walletHasCoinModel->addCoins($useCoinModel);
-            // d($walletHasCoinModel->getCoins());
+            $walletHasCoinModel = $walletHasCoinsDAO->buildObject($row);
+
+            $coinModel = $coinDAO->buildObject($row);
+
+            $walletHasCoinModel->setCoins($coinModel);
+            
             $wallets[$walletId]->addWalletHasCoins($walletHasCoinModel);
+            // d($wallets[$walletId]->getWalletHasCoins());
+
+            
+            d($wallets['0']->getWalletHasCoins());
         }
+        // d($wallets['0']->getWalletHasCoins());
+        
+        // d($wallets);
         $result->closeCursor();
         return $wallets;
     }

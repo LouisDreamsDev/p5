@@ -90,7 +90,7 @@ class Wallet
      * @param  mixed $walletHasCoins
      * @return void
      */
-    public function setWalletHasCoins($walletHasCoins)
+    public function setWalletHasCoins(WalletHasCoins $walletHasCoins)
     {
         $this->walletHasCoins = $walletHasCoins;
     } 
@@ -103,10 +103,7 @@ class Wallet
      */
     public function addWalletHasCoins(WalletHasCoins $walletHasCoins)
     {
-        $this->walletHasCoins[] = $walletHasCoins;
-        d($this->walletHasCoins);
+        array_push($this->walletHasCoins, $walletHasCoins);
     }
-
-
 
 }

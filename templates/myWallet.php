@@ -1,7 +1,7 @@
 <?php $this->title = 'Mes portefeuilles'; ?>
-<?= $this->session->show('new_wallet'); ?>
-<?= $this->session->show('edit_wallet'); ?>
-<?= $this->session->show('delete_wallet'); ?>
+<?= $this->session->show('createWallet'); ?>
+<?= $this->session->show('editWallet'); ?>
+<?= $this->session->show('deleteWallet'); ?>
 
 <div id="global-wallet">
 
@@ -9,11 +9,11 @@
 
 foreach($wallets as $wallet)
 {
-    d($wallet);
+    // d($wallet);
     ?>
     <div class="card">
         <div class="card-title">
-            <h2><?= $wallet->getTitle(); ?></h2>
+            <h2><a href="../public/index.php?route=editWallet&walletId=<?= $wallet->getId(); ?>"><?= $wallet->getTitle(); ?></a></h2>
             <em><?= $wallet->getLastModified(); ?></em>
         </div>
         <div class="card-body">
@@ -21,7 +21,7 @@ foreach($wallets as $wallet)
             foreach($wallet->getWalletHasCoins() as $whc)
             {
                 ?>
-                <li><?php  // d($coins) ?></li>
+                <li><?php var_dump($wallet->getWalletHasCoins()) ?></li>
                 <?php
             }
             ?>

@@ -49,7 +49,7 @@ class Router
                     $this->backController->editWallet($this->request->getPost(), $this->request->getGet()->get('walletId'));
                 }
                 elseif($route === 'deleteCoinFromWallet'){
-                    $this->backController->deleteCoinFromWallet($this->request->getGet()->get('walletId'), $this->request->getGet()->get('coinId'));
+                    $this->backController->deleteCoinFromWallet($this->request->getGet()->get('walletId'), $this->request->getPost()->get('coinId'));
                 }
                 elseif($route === 'updatePassword'){
                     $this->backController->updatePassword($this->request->getPost());

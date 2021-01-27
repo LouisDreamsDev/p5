@@ -20,24 +20,24 @@ class WalletHasCoinsDAO extends DAO
 
     public function getCoinsFromWallet($walletId)
     {
-        $sql = 'SELECT wallet_has_coins.walletId, wallet_has_coins.coinId, coins.symbol, coins.price, wallet_has_coins.coinQuantity
+        $sql = 'SELECT wallet_has_coins.walletId, wallet_has_coins.coinId, wallet_has_coins.coinQuantity, coins.symbol, coins.price
         FROM wallet_has_coins
         INNER JOIN wallet ON wallet_has_coins.walletId = wallet.id
         INNER JOIN coins ON wallet_has_coins.coinId = coins.id
         WHERE wallet_has_coins.walletId = ?';
         $result = $this->createQuery($sql, [$walletId]);
-        $coins = [];
+        $walletHasCoins = [];
         foreach ($result as $row)
         {
             $coinId = $row['coinId'];
-            $coins[$coinId] = $this->buildObject($row);
-            /* creation objet wallet has coins  */
+            $walletHasCoins[$coinId] = $this->buildObject($row);
+
         }
         $result->closeCursor();
-        return $coins;
+        return $walletHasCoins;
     }
 
-    public function editCoinQuantity($walletId, $coinId, $coinQuantity)
+    public function editCoin($walletId, $coinId, $coinQuantity = 0)
     {
         $sql = 'UPDATE wallet_has_coins SET walletId=:walletId, coinId=:coinId, coinQuantity=:coinQuantity';
         $this->createQuery($sql, [
