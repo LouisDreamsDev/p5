@@ -1,17 +1,17 @@
 #main-logo {
   margin: 0 0 7px 0;
 }
-#home-cards {
-  width: 80%;
-  margin: auto;
+#myData {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .card {
-  width: 25rem;
-  margin: 4px;
+  width: 18rem;
+  margin: 20px;
+  min-width: 200px;
 }
-.card-text {
-  font-size: 0.9em;
-}
+
 label {
   margin: 16px 0 16px 0;
 }

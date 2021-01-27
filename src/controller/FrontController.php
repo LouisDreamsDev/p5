@@ -22,7 +22,6 @@ class FrontController extends Controller
     {
         $coins = $this->coinDAO->getCoins();
         $result = [];
-        $result['$coins'] = [];
         foreach($coins as $coin)
         {
             $set = [
@@ -41,7 +40,7 @@ class FrontController extends Controller
                 "percentChange7d" => $coin->getPercentChange7d(),
                 "marketCap" => $coin->getMarketCap()
             ];
-            $result['$coins'][] = $set;
+            $result[] = $set;
         }
 
         $json = json_encode($result);

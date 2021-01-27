@@ -8,6 +8,10 @@
     <h2 class="text-center py-4 alert alert-primary">Bienvenue sur Wallet(x) !</h2>
     <hr>
 
+    <div id="myData" class="">
+
+    </div>
+
 </div>
 
 <script src="../public/js/HomeClass.js"></script>
