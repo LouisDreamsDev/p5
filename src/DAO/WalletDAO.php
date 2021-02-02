@@ -25,7 +25,7 @@ class WalletDAO extends DAO
     public function getWalletsFromUser($userId)
     {
         $sql = 'SELECT 
-        wallet.id, wallet.title, wallet.lastEdit, 
+        wallet.id, wallet.title, wallet.lastEdit, wallet_has_coins.whcId, 
         wallet_has_coins.walletId, wallet_has_coins.coinId, wallet_has_coins.coinQuantity, 
         coins.id as coinId, coins.coinName, coins.symbol, coins.slug, coins.maxSupply, coins.circulatingSupply, coins.totalSupply, coins.cmcRank, coins.lastUpdated, coins.price, coins.volume24h, coins.percentChange1h, coins.percentChange24h, coins.percentChange7d, coins.marketCap
         FROM wallet
@@ -34,29 +34,20 @@ class WalletDAO extends DAO
         WHERE wallet.userId = ?';
         $result = $this->createQuery($sql, [$userId]);
         $wallets = [];
-        $walletHasCoinsDAO = new WalletHasCoinsDAO();
-        $coinDAO = new CoinDAO();
         foreach ($result as $row)
         {
             $walletId = $row['id'];
-            // d($walletId);
-            $wallets[$walletId] = $this->buildObject($row);
-
+            if(!array_key_exists($walletId, $wallets))
+            {
+                $wallets[$walletId] = $this->buildObject($row);
+            }
+            $walletHasCoinsDAO = new WalletHasCoinsDAO();
+            $coinDAO = new CoinDAO();            
             $walletHasCoinModel = $walletHasCoinsDAO->buildObject($row);
-
             $coinModel = $coinDAO->buildObject($row);
-
             $walletHasCoinModel->setCoins($coinModel);
-            
             $wallets[$walletId]->addWalletHasCoins($walletHasCoinModel);
-            // d($wallets[$walletId]->getWalletHasCoins());
-
-            
-            d($wallets['0']->getWalletHasCoins());
         }
-        // d($wallets['0']->getWalletHasCoins());
-        
-        // d($wallets);
         $result->closeCursor();
         return $wallets;
     }
@@ -73,9 +64,12 @@ class WalletDAO extends DAO
         return $this->buildObject($wallet);
     }
 
-    public function createWallet()
+    public function addWallet(Parameter $post, $userId)
     {
-        
+        $sql = 'INSERT INTO wallet (title, lastEdit, userId)
+                VALUES (?, NOW(), ?)';
+        $lastId = $this->createQuery($sql, [$post->get('walletTitle'),  $userId], ['RETURN_LAST_INSERT' => true]);
+        return $lastId;
     }
 
     public function editWallet(Parameter $post, $walletId, $userId)

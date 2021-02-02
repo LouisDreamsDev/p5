@@ -3,31 +3,46 @@
 namespace App\src\model;
 
 class WalletHasCoins
-{
+{    
     /**
+     * whcId
+     *
      * @var int
      */
-
+    private $whcId;
+    
+    /**
+     * walletId
+     *
+     * @var int
+     */
     private $walletId;
-
+    
     /**
+     * coinId
+     *
      * @var int
      */
-
     private $coinId;
-
+ 
     /**
+     * coinSymbol
+     *
      * @var string
      */
-
     private $coinSymbol;
 
     /**
+     * coinPrice
+     *
      * @var int
      */
     private $coinPrice;
 
+    
     /**
+     * coinQuantity
+     *
      * @var int
      */
     private $coinQuantity;
@@ -37,6 +52,34 @@ class WalletHasCoins
      * @return array<Coin>
      */
     private $coins = [];
+
+    
+    /**
+     * getWhcId
+     *
+     * @return int
+     */
+    public function getWhcId()
+    {
+        return $this->whcId;
+    }
+        
+    /**
+     * setWhcId
+     * setter $this->whcId
+     * @param  int $whcId
+     * @return void
+     */
+    public function setWhcId($whcId)
+    {
+        $this->whcId = $whcId;
+    }
+        
+    /**
+     * getWalletId
+     *
+     * @return int
+     */
 
     public function getWalletId()
     {

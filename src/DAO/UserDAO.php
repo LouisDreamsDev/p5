@@ -34,7 +34,7 @@ class UserDAO extends DAO
     {
         $this->checkUser($post);
         $sql = 'INSERT INTO user (pseudo, mail, password, createdAt, roleId) VALUES (?, ?, ?, NOW(), ?)';
-        $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_BCRYPT), 1]);
+        $this->createQuery($sql, [$post->get('pseudo'), $post->get('mail'), password_hash($post->get('password'), PASSWORD_BCRYPT), 1]);
     }
 
     public function checkUser(Parameter $post)

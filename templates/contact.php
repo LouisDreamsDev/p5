@@ -1,6 +1,6 @@
 <?php $this->title = "Contact"; ?>
 
-<form id="contact">
+<form class="form-t1" id="contact">
   <div class="form-group">
     <label for="title_request">Titre</label>
     <input type="text" class="form-control" id="title_request" placeholder="Entrer le titre de votre message ici..">

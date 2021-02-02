@@ -9,17 +9,16 @@
 .card {
   width: 18rem;
   margin: 20px;
-  min-width: 200px;
+  /* min-width: 200px; */
 }
-
 label {
   margin: 16px 0 16px 0;
 }
-.form-group {
+.form-t1 {
   margin: auto;
-  width: 270px;
+  width: 400px;
 }
-#edit_wallet .form-group {
+.form-t2 {
   margin: auto;
   width: 870px;
 }
@@ -30,8 +29,13 @@ label {
 #global-wallet .card {
   margin: auto;
   width: 80%;
+  width: 44rem;
 }
 #wallet_total {
   margin: auto;
   width: 98%;
 }
+#addWalletIcon {
+  margin: 40px 0 40px 0;
+}
+

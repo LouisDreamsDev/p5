@@ -48,6 +48,9 @@ class Router
                 elseif($route === 'editWallet'){
                     $this->backController->editWallet($this->request->getPost(), $this->request->getGet()->get('walletId'));
                 }
+                elseif($route === 'createWallet'){
+                    $this->backController->createWallet($this->request->getPost());
+                }
                 elseif($route === 'deleteCoinFromWallet'){
                     $this->backController->deleteCoinFromWallet($this->request->getGet()->get('walletId'), $this->request->getPost()->get('coinId'));
                 }

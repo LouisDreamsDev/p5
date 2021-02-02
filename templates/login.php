@@ -3,7 +3,7 @@
 <?= $this->session->show('error_login'); ?>
 <?= $this->session->show('need_login'); ?>
 
-<form method="post" action="../public/index.php?route=login">
+<form class="form-t1" method="post" action="../public/index.php?route=login">
     <div class="form-group">
         <label for="pseudo">Pseudo</label><br>
         <input class="form-control" type="text" id="pseudo" name="pseudo" value="<?= isset($post) ? htmlspecialchars($post->get('pseudo')): ''; ?>"><br>

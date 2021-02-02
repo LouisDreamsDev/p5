@@ -58,32 +58,66 @@ class BackController extends Controller
         }
     }
 
-    public function createWallet()
+    public function createWallet(Parameter $post)
     {
-
+        if($this->checkLoggedIn())
+        {
+            $coins = $this->coinDAO->getCoins();
+            if($post->get('submit')) 
+            {
+                //check des erreurs
+                $errors = $this->validation->validate($post, 'Wallet');
+                if (!$errors) // si aucune erreur, édition
+                {
+                    $walletLastId = $this->walletDAO->addWallet($post, $this->session->get('id'));
+                    $this->walletHasCoinsDAO->addWalletHasCoins($walletLastId, $post->get('coins'));
+                    $this->session->set('createWallet', 'Votre nouveau portefeuille '.$post->get('walletTitle').' a bien été créé.');
+                    header('Location: ../public/index.php?route=myWallet');
+                }
+                else
+                {
+                    return $this->view->render('createWallet', [
+                        'post' => $post,
+                        'coins' => $coins,
+                        'errors' => $errors,
+                    ]);
+                }
+            }
+            else
+            {
+                return $this->view->render('createWallet', [
+                    'coins' => $coins,
+                ]);
+            }
+        }
+        
     }
 
     public function editWallet(Parameter $post, $walletId)
     {
-        $wallet = $this->walletDAO->getWallet($walletId);
-        $walletHasCoins = $this->walletHasCoinsDAO->getCoinsFromWallet($walletId);
-        if($post->get('submit')) 
+        if($this->checkLoggedIn())
         {
-            $errors = $this->validation->validate($post, 'Wallet');
-            if (!$errors)
+            $wallet = $this->walletDAO->getWallet($walletId);
+            $walletHasCoins = $this->walletHasCoinsDAO->getCoinsFromWallet($walletId);
+            if($post->get('submit')) 
             {
-                $this->walletDAO->editWallet($post, $walletId, $this->session->get('id'));
-                $this->session->set('editWallet', 'Le portefeuille a bien été modifié.');
-                header('Location: ../public/index.php?route=editWallet&walletId='.$walletId);
-            }
-            else
-            {
-                return $this->view->render('editWallet', [
-                    'post' => $post,
-                    'walletHasCoins' => $walletHasCoins,
-                    'errors' => $errors,
-                ]);
-            }
+                //check des erreurs
+                $errors = $this->validation->validate($post, 'Wallet');
+                if (!$errors) // si aucune, édition
+                {
+                    $this->walletDAO->editWallet($post, $walletId, $this->session->get('id'));
+                    $this->walletHasCoinsDAO->editCoinQuantity($post->get('whcId'), $post->get('coinQuantity'));
+                    $this->session->set('editWallet', 'Le portefeuille a bien été modifié.');
+                    header('Location: ../public/index.php?route=editWallet&walletId='.$walletId);
+                }
+                else
+                {
+                    return $this->view->render('editWallet', [
+                        'post' => $post,
+                        'walletHasCoins' => $walletHasCoins,
+                        'errors' => $errors,
+                    ]);
+                }
         }
         else
         {
@@ -94,9 +128,10 @@ class BackController extends Controller
                 'walletHasCoins' => $walletHasCoins
             ]);
         }
+        }
     }
 
-    public function deleteWallet($walletId) 
+    public function deleteWallet($walletId)
     {
         if($this->checkLoggedIn()) {
             $this->walletDAO->deleteWallet($walletId);

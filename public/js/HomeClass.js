@@ -2,6 +2,7 @@ class HomeClass
 {
     constructor()
     {
+        this.spinner = document.getElementById("spinner");
         this.ready();
 
     } // fin du constructor
@@ -17,14 +18,13 @@ class HomeClass
     }
     loader()
     {
+        setTimeout(function(){
+            homeInstance.fetch();
+            // document.getElementById("spinner-child").style.display = "none";
+            homeInstance.spinner.classList.remove('d-flex');
+            homeInstance.spinner.style.display = "none";
+        }, 2500);
 
-        // 1. while(document).ready() ??
-
-        // 2. setTimeOut ?
-
-        // launch display JSON
-
-        this.fetch();
     }
 
     appendData(data)
@@ -87,27 +87,5 @@ class HomeClass
             console.log(err);
         });
     }
-
-    ajax()
-    {
-        // create the XMLHttpReaquest object
-        let xhr = new XMLHttpRequest();
-        // prepare the request
-        xhr.open('GET', 'https://localhost/projet-5-projet-personnel/public/index.php?route=json', true);
-        xhr.responseType = 'text';
-        // send the request
-        xhr.send();
-
-        // when readystate changes
-        xhr.onload = function()
-        {
-            // if server status was ok
-            if(xhr.status === 200)
-            {
-               this.mainContainer = JSON.parse(xhr.responseText); 
-            }
-        }
-    }
-
     
 }

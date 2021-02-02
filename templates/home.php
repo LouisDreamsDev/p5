@@ -8,11 +8,15 @@
     <h2 class="text-center py-4 alert alert-primary">Bienvenue sur Wallet(x) !</h2>
     <hr>
 
+    <div id="spinner" class="spinner"></div>
+
     <div id="myData" class="">
 
     </div>
 
 </div>
+
+
 
 <script src="../public/js/HomeClass.js"></script>
 <script src="../public/js/main.js"></script>

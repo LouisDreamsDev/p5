@@ -1,7 +1,7 @@
 <?php $this->title = "Inscription"; ?>
 
-<form method="post" action="../public/index.php?route=register">
-    <div class="form-group">
+<form class="form-t1" method="post" action="../public/index.php?route=register">
+    <div class="form-group form-t1">
         <label for="pseudo">Pseudo</label>
         <br>
         <input class="form-control" type="text" id="pseudo" name="pseudo" value="<?= isset($post) ? htmlspecialchars($post->get('pseudo')): ''; ?>">
