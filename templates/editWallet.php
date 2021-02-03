@@ -2,10 +2,11 @@
 <?= $this->session->show('editWallet'); ?>
 <?php $walletId = $post->get('id'); ?>
 <form id="editWallet" method="post" action="../public/index.php?route=editWallet&walletId=<?= $walletId ?>">
+<?php d($post); ?>
     <div class="form-group walletForm">
         <div class="container">
             <h4><label for="title">Titre du portefeuille</label></h4>
-            <input type="text" class="form-control" name="title" value="<?= htmlspecialchars($post->get('title')); ?>">
+            <input type="text" class="form-control" name="title" value="<?= isset($post) ? htmlspecialchars($post->get('title')): ''; ?>">
             <?= isset($errors['title']) ? $errors['title'] : ''; ?>
         </div>
         <br>
@@ -20,13 +21,12 @@
             {
                 $sum = $walletHasCoin->getCoinPrice() * $walletHasCoin->getCoinQuantity();
                 $total += $sum;
-                d($walletHasCoin->getWhcId());
                 ?>
                 <li class="list-group-item border-bottom d-flex">
                     <span class="mt-1"><strong class="text-success"><?= $walletHasCoin->getCoinSymbol(); ?></strong> &#8771 <?= $walletHasCoin->getCoinPrice(); ?> x <?= $walletHasCoin->getCoinQuantity(); ?> = <?= $sum ?>&euro; </span>
                     <div class="ml-auto">
                         <input type="hidden" name="whcId[]" value="<?= $walletHasCoin->getWhcId(); ?>">
-                        <input type="number" value="<?= $walletHasCoin->getCoinQuantity(); ?>" name="coinQuantity" min="0" max="100">
+                        <input type="number" value="<?= $walletHasCoin->getCoinQuantity(); ?>" name="coinQuantity[]" min="0" max="100">
                         <a class="text-danger" href="../public/index.php?route=deleteCoinFromWallet&walletId=<?= $walletHasCoin->getWalletId() ?>&whcId=<?= $walletHasCoin->getWhcId(); ?>">delete</a>
                     </div>
                 </li>

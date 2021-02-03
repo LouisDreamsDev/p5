@@ -48,16 +48,19 @@ class WalletHasCoinsDAO extends DAO
         }
     }
 
-    public function editCoinQuantity($whcId, $coinQuantity)
+    public function editCoinQuantity($whcIdCombineToCoinQuantity)
     {
         $sql = 'UPDATE wallet_has_coins 
                 SET coinQuantity=:coinQuantity 
                 WHERE whcId=:whcId';
 
-        $this->createQuery($sql, [
-            'whcId' => $whcId,
-            'coinQuantity' => $coinQuantity,
-        ]);
+        foreach($whcIdCombineToCoinQuantity as $whcId => $coinQuantity)
+        {
+            $this->createQuery($sql, [
+                'whcId' => $whcId,
+                'coinQuantity' => $coinQuantity,
+            ]);
+        }
     }
 
     public function deleteCoinFromWallet($whcId)

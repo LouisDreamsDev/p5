@@ -106,8 +106,9 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Wallet');
                 if (!$errors) // si aucune, édition
                 {
+                    $whcIdCombineToCoinQuantity = array_combine($post->get('whcId'), $post->get('coinQuantity'));
                     $this->walletDAO->editWallet($post, $walletId, $this->session->get('id'));
-                    $this->walletHasCoinsDAO->editCoinQuantity($post->get('whcId'), $post->get('coinQuantity'));
+                    $this->walletHasCoinsDAO->editCoinQuantity($whcIdCombineToCoinQuantity);
                     $this->session->set('editWallet', 'Le portefeuille a bien été modifié.');
                     header('Location: ../public/index.php?route=editWallet&walletId='.$walletId);
                 }

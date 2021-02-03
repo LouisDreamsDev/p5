@@ -24,14 +24,13 @@ class WalletDAO extends DAO
 
     public function getWalletsFromUser($userId)
     {
-        $sql = 'SELECT 
-        wallet.id, wallet.title, wallet.lastEdit, wallet_has_coins.whcId, 
+        $sql = 'SELECT wallet.id, wallet.title, wallet.lastEdit, wallet_has_coins.whcId, 
         wallet_has_coins.walletId, wallet_has_coins.coinId, wallet_has_coins.coinQuantity, 
         coins.id as coinId, coins.coinName, coins.symbol, coins.slug, coins.maxSupply, coins.circulatingSupply, coins.totalSupply, coins.cmcRank, coins.lastUpdated, coins.price, coins.volume24h, coins.percentChange1h, coins.percentChange24h, coins.percentChange7d, coins.marketCap
-        FROM wallet
-        LEFT JOIN wallet_has_coins on wallet.id = wallet_has_coins.walletId
-        LEFT JOIN coins on wallet_has_coins.coinId = coins.id
-        WHERE wallet.userId = ?';
+                FROM wallet
+                LEFT JOIN wallet_has_coins on wallet.id = wallet_has_coins.walletId
+                LEFT JOIN coins on wallet_has_coins.coinId = coins.id
+                WHERE wallet.userId = ?';
         $result = $this->createQuery($sql, [$userId]);
         $wallets = [];
         foreach ($result as $row)
@@ -55,9 +54,9 @@ class WalletDAO extends DAO
     public function getWallet($walletId)
     {
         $sql = 'SELECT wallet.id, wallet.title, wallet.lastEdit, wallet.userId
-        FROM wallet
-        INNER JOIN user ON wallet.userId = user.id
-        WHERE wallet.id = ?';
+                FROM wallet
+                INNER JOIN user ON wallet.userId = user.id
+                WHERE wallet.id = ?';
         $result = $this->createQuery($sql, [$walletId]);
         $wallet = $result->fetch();
         $result->closeCursor();
@@ -74,7 +73,9 @@ class WalletDAO extends DAO
 
     public function editWallet(Parameter $post, $walletId, $userId)
     {
-        $sql = 'UPDATE wallet SET title=:title, lastEdit=NOW(), userId=:userId WHERE id=:walletId';
+        $sql = 'UPDATE wallet 
+                SET title=:title, lastEdit=NOW(), userId=:userId 
+                WHERE id=:walletId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
             'userId' => $userId,
@@ -84,9 +85,13 @@ class WalletDAO extends DAO
 
     public function deleteWallet($walletId)
     {
-        $sql = 'DELETE FROM wallet_has_coins WHERE walletId = ?';
+        $sql = 'DELETE 
+                FROM wallet_has_coins 
+                WHERE walletId = ?';
         $this->createQuery($sql, [$walletId]);
-        $sql = 'DELETE FROM wallet WHERE id = ?';
+        $sql = 'DELETE 
+                FROM wallet 
+                WHERE id = ?';
         $this->createQuery($sql, [$walletId]);
     }
 

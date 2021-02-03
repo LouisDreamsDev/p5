@@ -1,11 +1,11 @@
 <?php $this->title = 'Nouveau portefeuille'; ?>
 <form id="createWallet" method="post" action="../public/index.php?route=createWallet">
     <div class="form-group walletForm">
-        <div class="container">
-            <label for="walletTitle">Titre du nouveau portefeuille</label>
-            <input type="text" class="form-control" name="walletTitle" value="">
+        <div class="container mb-1">
+            <label for="title">Titre du nouveau portefeuille</label>
+            <input type="text" class="form-control" name="title" value="">
         </div>
-        <?= isset($errors['title']) ? $errors['title'] : ''; ?>
+        <span class="m-auto text-danger"><?= isset($errors['title']) ? $errors['title'] : ''; ?></span>
         <br>
         <h4 class="alert alert-primary pt-3"><label class="p-0" for="coins">Choississez les pièces de votre portefeuille:</label></h4>
         <br>
