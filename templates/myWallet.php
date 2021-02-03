@@ -11,9 +11,10 @@ foreach($wallets as $wallet)
 {
     ?>
     <div class="card m-4">
-        <div class="card-header">
-                <h2><a href="../public/index.php?route=editWallet&walletId=<?= $wallet->getId(); ?>"><?= $wallet->getTitle(); ?></a></h2>
+        <div class="card-header d-flex bd-highlight mb-3">
+                <h2 class="mr-auto"><a href="../public/index.php?route=editWallet&walletId=<?= $wallet->getId(); ?>"><?= $wallet->getTitle(); ?></a></h2>
                 <em>dernière modification: <?= $wallet->getLastModified(); ?></em>
+                <a class="ml-2 text-danger" href="../public/index.php?route=deleteWallet&walletId=<?= $wallet->getId(); ?>">delete</a>
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">

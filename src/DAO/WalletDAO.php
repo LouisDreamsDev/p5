@@ -90,16 +90,4 @@ class WalletDAO extends DAO
         $this->createQuery($sql, [$walletId]);
     }
 
-    /* TEST */
-
-    public function getWalletsId($wallets)
-    {
-        $wallets_id = [];
-        foreach($wallets as $wallet)
-        {
-            $wallets_id[] = $wallet->getId(); 
-        }
-        return $wallets_id;
-    }
-
 }

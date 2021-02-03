@@ -11,20 +11,57 @@
   margin: 20px;
   /* min-width: 200px; */
 }
-label {
-  margin: 16px 0 16px 0;
+form {
+  margin: 70px 0 0 0;
 }
-.form-t1 {
+.userForm {
+  display: table;
   margin: auto;
-  width: 400px;
 }
-.form-t2 {
-  margin: auto;
-  width: 870px;
+.userForm label {
+  display: table-cell;
 }
-#contact .form-group {
+.userForm input {
+  display: table-cell;
+  width: 300px;
+}
+.userForm .submit {
+  width: 120px;
   margin: auto;
-  width: 400px;
+  align-items: center;
+}
+.walletForm {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-content: center;
+}
+.walletForm .container {
+  width: 40%;
+}
+.walletForm h4 {
+  margin: auto;
+}
+.walletForm .coinsContainer {
+  width: 70%;
+  margin: auto;
+}
+#editAddCoins p {
+  margin: auto;
+}
+#addCoinsOnEditContainer {
+  display: none;
+  width: 70%;
+  margin: auto;
+  padding: 20px;
+  
+}
+#addCoinsOnEditContainer .custom-control {
+  margin: 15px;
+}
+.walletForm .submit {
+  width: 130px;
+  margin: auto;
 }
 #global-wallet .card {
   margin: auto;
@@ -36,6 +73,15 @@ label {
   width: 98%;
 }
 #addWalletIcon {
-  margin: 40px 0 40px 0;
+  margin: 40px;
 }
+
+#createWalletContainter {
+  width: 60%;
+  margin: auto;
+}
+#createWalletContainer .custom-control {
+  width: 50em;
+}
+
 

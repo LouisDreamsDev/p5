@@ -16,7 +16,5 @@
 
 </div>
 
-
-
 <script src="../public/js/HomeClass.js"></script>
 <script src="../public/js/main.js"></script>

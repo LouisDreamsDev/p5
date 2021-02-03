@@ -10,7 +10,7 @@ class BackController extends Controller
     private function checkLoggedIn()
     {
         if(!$this->session->get('pseudo')) {
-            $this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette page');
+            $this->session->set('needLogin', 'Vous devez vous connecter pour accéder à cette page');
             header('Location: ../public/index.php?route=login');
         } 
         else 
@@ -97,6 +97,7 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn())
         {
+            $coins = $this->coinDAO->getCoins();
             $wallet = $this->walletDAO->getWallet($walletId);
             $walletHasCoins = $this->walletHasCoinsDAO->getCoinsFromWallet($walletId);
             if($post->get('submit')) 
@@ -125,6 +126,7 @@ class BackController extends Controller
             $post->set('title', $wallet->getTitle());
             return $this->view->render('editWallet', [
                 'post' => $post,
+                'coins' => $coins,
                 'walletHasCoins' => $walletHasCoins
             ]);
         }
@@ -140,13 +142,13 @@ class BackController extends Controller
         }
     }
 
-    public function deleteCoinFromWallet($walletId, $coinId)
+    public function deleteCoinFromWallet($walletId, $whcId)
     {
         if($this->checkLoggedIn())
         {
-            $this->walletHasCoinsDAO->deleteCoinFromWallet($walletId, $coinId);
+            $this->walletHasCoinsDAO->deleteCoinFromWallet($whcId);
             $this->session->set('deleteWallet', 'L\'asset a bien été supprimé.');
-            header('Location: ../public/index.php?route=myWallet');
+            header('Location: ../public/index.php?route=editWallet&walletId='.$walletId);
         }
     }
 

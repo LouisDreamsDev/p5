@@ -5,8 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/style.css">
-    <link rel="stylesheet" href="../public/css/spinner.css">
-     <title><?= $title ?></title>
+    <link rel="stylesheet" href="../public/css/loader.css">
 </head>
 <body>
 <script src="../public/js/jquery-3.5.1.min.js"></script>
@@ -20,23 +19,23 @@
         </a>
         <div class="lx">
             <ul class="nav d-flex justify-content-between">
-            <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php">Accueil</a></li>
-            <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=refreshApi">Refresh</a></li>
+            <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php">Accueil</a></li>
+            <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=refreshApi">Refresh</a></li>
             <?php
             if($this->session->get('pseudo'))
             {
                 ?>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=myWallet">Mes Portefeuilles</a></li>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=contact">Contact</a></li>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=profil">Profil</a></li>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=logout">Se déconnecter</a></li>
+                <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=myWallet">Mes Portefeuilles</a></li>
+                <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=profile">Profil</a></li>
+                <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=logout">Déconnexion</a></li>
                 <?php
             }
             else
             {
                 ?>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=login">Se Connecter</a></li>
-                <li class="nav-item border-bottom border-left"><a class="nav-link my-1 py-3" href="../public/index.php?route=register">S'inscrire</a></li>
+                <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=login">Connexion</a></li>
+                <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=register">Inscription</a></li>
                 <?php
             }
             ?>
@@ -45,7 +44,6 @@
     </nav>
 </header>
 <div id="content">
-    <h4 class="path-title text-center py-3 alert alert-primary"><?= $this->title ?></h4>
     <?= $content ?>
 </div>
 <footer>

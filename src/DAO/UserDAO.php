@@ -39,7 +39,9 @@ class UserDAO extends DAO
 
     public function checkUser(Parameter $post)
     {
-        $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo = ?';
+        $sql = 'SELECT COUNT(pseudo) 
+                FROM user 
+                WHERE pseudo = ?';
         $result = $this->createQuery($sql, [$post->get('pseudo')]);
         $isUnique = $result->fetchColumn();
         if($isUnique) {
@@ -49,32 +51,45 @@ class UserDAO extends DAO
 
     public function login(Parameter $post)
     {
-        $sql = 'SELECT user.id, user.roleId, user.password, role.name FROM user INNER JOIN role ON role.id = user.roleId WHERE pseudo = ?';
+        $sql = 'SELECT user.id, user.roleId, user.password, role.name 
+                FROM user 
+                INNER JOIN role 
+                ON role.id = user.roleId 
+                WHERE pseudo = ?';
         $data = $this->createQuery($sql, [$post->get('pseudo')]);
         $result = $data->fetch();
-        $isPasswordValid = password_verify($post->get('password'), $result['password']);
-        $isPasswordValid = true;
-        return [
-            'result' => $result,
-            'isPasswordValid' => $isPasswordValid
-        ];
+        if($result && password_verify($post->get('password'), $result['password']))
+        {
+            $isPasswordValid = true;
+
+            return [
+                'result' => $result,
+                'isPasswordValid' => $isPasswordValid
+            ];
+        }
     }
     
     public function updatePassword(Parameter $post, $pseudo)
     {
-        $sql = 'UPDATE user SET password = ? WHERE pseudo = ?';
+        $sql = 'UPDATE user 
+                SET password = ? 
+                WHERE pseudo = ?';
         $this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $pseudo]);
     }
 
     public function deleteAccount($pseudo)
     {
-        $sql = 'DELETE FROM user WHERE pseudo = ?';
+        $sql = 'DELETE 
+                FROM user 
+                WHERE pseudo = ?';
         $this->createQuery($sql, [$pseudo]);
     }
 
     public function deleteUser($userId)
     {
-        $sql = 'DELETE FROM user WHERE id = ?';
+        $sql = 'DELETE 
+                FROM user 
+                WHERE id = ?';
         $this->createQuery($sql, [$userId]);
     }
 }

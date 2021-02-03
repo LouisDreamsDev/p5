@@ -53,6 +53,7 @@ class WalletHasCoinsDAO extends DAO
         $sql = 'UPDATE wallet_has_coins 
                 SET coinQuantity=:coinQuantity 
                 WHERE whcId=:whcId';
+
         $this->createQuery($sql, [
             'whcId' => $whcId,
             'coinQuantity' => $coinQuantity,
@@ -61,7 +62,9 @@ class WalletHasCoinsDAO extends DAO
 
     public function deleteCoinFromWallet($whcId)
     {
-        $sql = 'DELETE FROM wallet_has_coins WHERE wallet_has_coins.whcId = ?';
-        $this->createQuery($sql, [$$whcId]);
+        $sql = 'DELETE 
+                FROM wallet_has_coins 
+                WHERE wallet_has_coins.whcId = ?';
+        $this->createQuery($sql, [$whcId]);
     }
 }
