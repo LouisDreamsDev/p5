@@ -26,7 +26,6 @@
             {
                 ?>
                 <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=myWallet">Mes Portefeuilles</a></li>
-                <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=contact">Contact</a></li>
                 <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=profile">Profil</a></li>
                 <li class="nav-item"><a class="nav-link my-1 py-3" href="../public/index.php?route=logout">Déconnexion</a></li>
                 <?php

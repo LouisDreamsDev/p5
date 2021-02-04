@@ -2,7 +2,6 @@
 <?= $this->session->show('editWallet'); ?>
 <?php $walletId = $post->get('id'); ?>
 <form id="editWallet" method="post" action="../public/index.php?route=editWallet&walletId=<?= $walletId ?>">
-<?php d($post); ?>
     <div class="form-group walletForm">
         <div class="container">
             <h4><label for="title">Titre du portefeuille</label></h4>
@@ -17,8 +16,10 @@
             <?php
             $sum = null;
             $total = null;
+            $coinIds = [];
             foreach($walletHasCoins as $walletHasCoin) 
             {
+                $coinIds[] = $walletHasCoin->getCoinId();
                 $sum = $walletHasCoin->getCoinPrice() * $walletHasCoin->getCoinQuantity();
                 $total += $sum;
                 ?>
@@ -26,7 +27,7 @@
                     <span class="mt-1"><strong class="text-success"><?= $walletHasCoin->getCoinSymbol(); ?></strong> &#8771 <?= $walletHasCoin->getCoinPrice(); ?> x <?= $walletHasCoin->getCoinQuantity(); ?> = <?= $sum ?>&euro; </span>
                     <div class="ml-auto">
                         <input type="hidden" name="whcId[]" value="<?= $walletHasCoin->getWhcId(); ?>">
-                        <input type="number" value="<?= $walletHasCoin->getCoinQuantity(); ?>" name="coinQuantity[]" min="0" max="100">
+                        <input type="number" value="<?= $walletHasCoin->getCoinQuantity(); ?>" name="coinQuantity[]" min="1" max="1000000000">
                         <a class="text-danger" href="../public/index.php?route=deleteCoinFromWallet&walletId=<?= $walletHasCoin->getWalletId() ?>&whcId=<?= $walletHasCoin->getWhcId(); ?>">delete</a>
                     </div>
                 </li>
@@ -44,15 +45,28 @@
             <div id="addCoinsOnEditContainer">
             <?php
             $id = 0;
+            d($coinIds);
             foreach($coins as $coin) 
             {
-                ?>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" name="coins[]" value="<?= $coin->getId() ?>" class="custom-control-input" id="btn-check<?= $id ?>" autocomplete="off">
-                    <label class="custom-control-label" for="btn-check<?= $id ?>"><?= $coin->getCoinName() ?></label>
-                </div>
-                <?php
-                $id++;
+                if(in_array($coin->getId(), $coinIds))
+                {
+                    ?>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" name="coins[]" value="<?= $coin->getId() ?>" class="custom-control-input" id="btn-check<?= $id ?>" autocomplete="off" checked disabled>
+                        <label class="custom-control-label" for="btn-check<?= $id ?>"><?= $coin->getCoinName() ?></label>
+                    </div>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" name="coins[]" value="<?= $coin->getId() ?>" class="custom-control-input" id="btn-check<?= $id ?>" autocomplete="off">
+                        <label class="custom-control-label" for="btn-check<?= $id ?>"><?= $coin->getCoinName() ?></label>
+                    </div>  
+                    <?php
+                }
+            $id++;
             }
             ?>
             </div>

@@ -6,7 +6,12 @@ use App\config\Parameter;
 
 class BackController extends Controller
 {
-
+    
+    /**
+     * checkLoggedIn
+     * 
+     * @return void
+     */
     private function checkLoggedIn()
     {
         if(!$this->session->get('pseudo')) {
@@ -26,7 +31,7 @@ class BackController extends Controller
             $this->session->set('not_admin', 'Vous n\'avez pas le droit d\'accéder à cette page');
             header('Location: ../public/index.php?route=profile');
         } 
-        else 
+        else
         {
             return true;
         }
@@ -46,7 +51,12 @@ class BackController extends Controller
             ]);   
         }
     }
-
+    
+    /**
+     * myWallets
+     * return les wallets d'un user dans la vue myWallet
+     * @return array
+     */
     public function myWallets()
     {
         if($this->checkLoggedIn()) {
@@ -57,7 +67,13 @@ class BackController extends Controller
             ]);
         }
     }
-
+    
+    /**
+     * createWallet
+     * creer une nouvelle wallet
+     * @param  mixed $post
+     * @return mixed
+     */
     public function createWallet(Parameter $post)
     {
         if($this->checkLoggedIn())
@@ -92,7 +108,14 @@ class BackController extends Controller
         }
         
     }
-
+    
+    /**
+     * editWallet
+     * edit le nom d'une wallet, le nombre de coin, ajout de coin et return editWallet
+     * @param  mixed Parameter $post
+     * @param  mixed $walletId
+     * @return mixed
+     */
     public function editWallet(Parameter $post, $walletId)
     {
         if($this->checkLoggedIn())
@@ -106,6 +129,10 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Wallet');
                 if (!$errors) // si aucune, édition
                 {
+                    if($post->get('coins'))
+                    {
+                        d($post->get('coins'));
+                    }
                     $whcIdCombineToCoinQuantity = array_combine($post->get('whcId'), $post->get('coinQuantity'));
                     $this->walletDAO->editWallet($post, $walletId, $this->session->get('id'));
                     $this->walletHasCoinsDAO->editCoinQuantity($whcIdCombineToCoinQuantity);
@@ -208,13 +235,5 @@ class BackController extends Controller
             $this->session->set($param, 'Votre compte a bien été supprimé.');
         }
         header('Location: ../public/index.php');
-    }
-
-    public function contact()
-    {
-        if($this->checkLoggedIn())
-        {
-            return $this->view->render('contact');   
-        }
     }
 }

@@ -46,6 +46,11 @@ form {
   width: 70%;
   margin: auto;
 }
+#editAddCoins .container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
 #editAddCoins p {
   margin: auto;
 }
