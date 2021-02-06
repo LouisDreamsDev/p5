@@ -44,8 +44,8 @@ class FrontController extends Controller
         }
 
         $json = json_encode($result);
-        header("Access-Control-Allow-Origin: *");
         header('Content-Type: application/json');
+        header("Access-Control-Allow-Origin: *");
         echo $json;
     }
 

@@ -63,11 +63,11 @@ class WalletDAO extends DAO
         return $this->buildObject($wallet);
     }
 
-    public function addWallet(Parameter $post, $userId)
+    public function addWallet($title, $userId)
     {
         $sql = 'INSERT INTO wallet (title, lastEdit, userId)
                 VALUES (?, NOW(), ?)';
-        $lastId = $this->createQuery($sql, [$post->get('walletTitle'),  $userId], ['RETURN_LAST_INSERT' => true]);
+        $lastId = $this->createQuery($sql, [$title,  $userId], ['RETURN_LAST_INSERT' => true]);
         return $lastId;
     }
 

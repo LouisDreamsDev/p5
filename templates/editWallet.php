@@ -45,7 +45,6 @@
             <div id="addCoinsOnEditContainer">
             <?php
             $id = 0;
-            d($coinIds);
             foreach($coins as $coin) 
             {
                 if(in_array($coin->getId(), $coinIds))

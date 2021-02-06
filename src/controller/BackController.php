@@ -85,7 +85,7 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Wallet');
                 if (!$errors) // si aucune erreur, édition
                 {
-                    $walletLastId = $this->walletDAO->addWallet($post, $this->session->get('id'));
+                    $walletLastId = $this->walletDAO->addWallet($post->get('title'), $this->session->get('id'));
                     $this->walletHasCoinsDAO->addWalletHasCoins($walletLastId, $post->get('coins'));
                     $this->session->set('createWallet', 'Votre nouveau portefeuille '.$post->get('walletTitle').' a bien été créé.');
                     header('Location: ../public/index.php?route=myWallet');
